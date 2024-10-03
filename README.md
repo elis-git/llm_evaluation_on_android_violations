@@ -20,7 +20,7 @@ Vulnerabilities are detected using [SPECK](https://github.com/SPRITZ-Research-Gr
 
 #### SPECK modifications
 
-The source code of SPECK is reported as well, containing a new script `detection/SPECK/additional/mapper.py` which performs a mapping between the faulty line in the decompiled file to the corresponding line in the original source code file and then extracts the the context (i.e, Java method or full component declaration) of the faulty line detected by SPECK.
+The source code of SPECK is reported as well, containing a new script `detection/SPECK/additional/mapper.py` which performs a mapping between the faulty line in the decompiled file to the corresponding line in the original source code file and then extracts the the context (i.e., Java method or full component declaration) of the faulty line detected by SPECK.
 
 ## Prompting LLMs
 
