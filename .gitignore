@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 *__pycache__/
 
-=======
->>>>>>> a13bcb264274adcb1af6740e5bce1294090dd547
 # ignore python virtual environment
 .venv/
 
