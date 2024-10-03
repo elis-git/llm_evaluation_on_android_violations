@@ -47,7 +47,7 @@ The `repair/__init__.py` file starts the complete flow for repair (prompting and
 A sample dataset is provided with the aim of making clearer the evaluation process to compute similarity scores(see `repair/prompting_llms/results/llm_outputs.py`) and it already contains llm outputs.
 
 In addition, the metrics results for **llm_outputs.csv** are saved in:
-- `repair/metrics/results_java` : it contains CodeBLEU similarity scores 
-- `repair/metrics/results_xml`  : it contains Jaccard, Levenshtein, Cosine similarity scores 
+- `repair/metrics/results_java` : it contains CodeBLEU similarity scores for each model
+- `repair/metrics/results_xml`  : it contains Jaccard, Levenshtein, Cosine similarity scores for each model
 
 
