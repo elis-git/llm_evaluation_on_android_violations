@@ -1,0 +1,104 @@
+_id,rule,language,ground_truths,complete_output,modified_codes,explanations
+66c62575c20fb5508703cac7,11,java,"// fix11: check whether to use getExternalCacheDir() or getCacheDir()
+
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    // fix11
+    long max_size = 1024L * 1024L;
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        File cacheDir = app.getCacheDir();
+        long cacheDirSize = app.getCacheDir().getTotalSpace();
+        if (cacheDirSize > max_size) {
+            cacheDir = app.getExternalCacheDir();
+        }
+        
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        if(new File(cacheDir).exists()) {
+            return new File(cacheDir);
+        }
+        cleanDir(Objects.requireNonNull(cacheDir);
+        cleanDir(Objects.requireNonNull(cacheDir);
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","<MODIFIED_CODE>
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        File cacheDir = app.getCacheDir();
+        if(new File(cacheDir,filename).exists()) {
+            return new File(cacheDir,filename);
+        }
+        cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+        cleanDir(Objects.requireNonNull(app.getCacheDir()));
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}
+<EXPLANATION> For caches smaller than 1 MB, `getCacheDir()` should be used. Thus, the code snippet was modified to use `app.getCacheDir()` to create and access the cached file.","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        File cacheDir = app.getCacheDir();
+        if(new File(cacheDir,filename).exists()) {
+            return new File(cacheDir,filename);
+        }
+        cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+        cleanDir(Objects.requireNonNull(app.getCacheDir()));
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","For caches smaller than 1 MB, `getCacheDir()` should be used. Thus, the code snippet was modified to use `app.getCacheDir()` to create and access the cached file."
+66cf438419c85fc3e29ecabb,23,xml,"<!--fix23: if a receiver is exported, explicitely add a permission to protect it--> 
+<receiver 
+    android:name=""package_name.ToggleWidget""
+    android:exported=""true""
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+</receiver>","<MODIFIED_CODE>
+<receiver
+    android:name=""package_name.ToggleWidget""
+    android:exported=""true""
+    android:icon=""@mipmap/ic_launcher""
+    android:label=""@string/widget_start_stop""
+    android:permission=""com.example.permission.PRIVATE"">
+</receiver>
+<EXPLANATION>
+The android:permission attribute has been added to the <receiver> tag.
+This attribute declares a permission that protects the receiver. Only applications that have been granted this permission can send broadcasts to the receiver.
+You should define a custom permission in your AndroidManifest.xml and use it here. In the example above, the permission com.example.permission.PRIVATE is used as a placeholder. Replace this with your custom permission.
+By adding a permission, you ensure that only authorized applications can interact with your receiver, improving the security of your application.","<receiver
+    android:name=""package_name.ToggleWidget""
+    android:exported=""true""
+    android:icon=""@mipmap/ic_launcher""
+    android:label=""@string/widget_start_stop""
+    android:permission=""com.example.permission.PRIVATE"">
+</receiver>","The android:permission attribute has been added to the <receiver> tag.
+This attribute declares a permission that protects the receiver. Only applications that have been granted this permission can send broadcasts to the receiver.
+You should define a custom permission in your AndroidManifest.xml and use it here. In the example above, the permission com.example.permission.PRIVATE is used as a placeholder. Replace this with your custom permission.
+By adding a permission, you ensure that only authorized applications can interact with your receiver, improving the security of your application."

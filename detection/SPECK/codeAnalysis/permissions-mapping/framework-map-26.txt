@@ -1,0 +1,10 @@
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.serverDisconnect(int,java.lang.String)void  ::  android.permission.BLUETOOTH
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.startMultiAdvertising(int,android.bluetooth.le.AdvertiseData,android.bluetooth.le.AdvertiseData,android.bluetooth.le.AdvertiseSettings)void  ::  android.permission.BLUETOOTH_ADMIN
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.startScan(int,boolean,android.bluetooth.le.ScanSettings,java.util.List,android.os.WorkSource,java.util.List,java.lang.String)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION, android.permission.BLUETOOTH_ADMIN, android.permission.BLUETOOTH_PRIVILEGED, android.permission.PEERS_MAC_ADDRESS, android.permission.UPDATE_DEVICE_STATS
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.stopMultiAdvertising(int)void  ::  android.permission.BLUETOOTH_ADMIN
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.stopScan(int,boolean)void  ::  android.permission.BLUETOOTH_ADMIN
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.unregAll()void  ::  android.permission.BLUETOOTH
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.unregisterClient(int)void  ::  android.permission.BLUETOOTH
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.unregisterServer(int)void  ::  android.permission.BLUETOOTH
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.writeCharacteristic(int,java.lang.String,int,int,int,[byte)void  ::  android.permission.BLUETOOTH, android.permission.BLUETOOTH_PRIVILEGED
+com.android.bluetooth.gatt.GattService$BluetoothGattBinder.writeDescriptor(int,java.lang.String,int,int,int,[byte)void  ::  android.permission.BLUETOOTH, android.permission.BLUETOOTH_PRIVILEGED

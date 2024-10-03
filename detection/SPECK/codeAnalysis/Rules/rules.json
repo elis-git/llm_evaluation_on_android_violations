@@ -1,0 +1,157 @@
+[
+    {
+        "rule_id": "1",
+        "short_description": "Show an app chooser. Implicit intents may be handled by more than one activity, therefore show an app chooser before launching the intent"
+    },
+    {
+        "rule_id": "2",
+        "short_description": ""
+    },
+    {
+        "rule_id": "3",
+        "short_description": "Remove unused permissions. They are declared in the manifest but there are no components that need them"
+    },
+    {
+        "rule_id": "4",
+        "short_description": "Use intents to defer permissions. There are several dangerous permissions that may be avoided just by using intents to perform the same operation"
+    },
+
+    {
+        "rule_id": "5",
+        "short_description": "Do not use HttpURLConnection but its secure version HttpsURLConnection and handle possible risk of SSLHandshakeException"
+    },
+
+    {
+        "rule_id": "6",
+        "short_description": "Do not enable Javascript interface for a WebView if Javascript is not allowed. Enable it only if the Javascript interface is safe to use"
+    },
+
+    {
+        "rule_id": "7",
+        "short_description": "Do not load urls into a WebView if they are not from a whitelist"
+    },
+
+    {
+        "rule_id": "8",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "9",
+        "short_description": "When using intents, share data carefully"
+    },
+
+    {
+        "rule_id": "10",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "11",
+        "short_description": "For caches larger than 1 MB, use getExternalCacheDir(). For caches 1 MB or smaller, use getCacheDir()"
+    },
+
+    {
+        "rule_id": "12",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "13",
+        "short_description": ""
+    },
+    {
+        "rule_id": "14",
+        "short_description": "If your app uses data from external storage, make sure that the contents of the data haven't been corrupted or modified"
+    },
+
+    {
+        "rule_id": "15",
+        "short_description": "Do not declare custom permissions with a dangerous protection level"
+    },
+
+    {
+        "rule_id": "16",
+        "short_description": "Always clean the WebView cache"
+    },
+
+    {
+        "rule_id": "17",
+        "short_description": "If query(), update(), delete() methods from ContentProvider interface are overridden, check if selection is concatenated with user data and may cause SQL injection"
+    },
+
+    {
+        "rule_id": "18",
+        "short_description": "Do not use implicit intents for startService(), bindService(), startActivity() and sendOrderdBroadcast(); use explicit intents"
+    },
+
+    {
+        "rule_id": "19",
+        "short_description": "Instead of a localhost network port, use an Android IPC mechanism where authentication is possible"
+    },
+
+    {
+        "rule_id": "20",
+        "short_description": "If a service is explicitly exported, declare a permission to protect access to it. If a service declares a permission but it is not explicitly exported, set exported attribute to true"
+    },
+
+    {
+        "rule_id": "21",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "22",
+        "short_description": "Use a Secure Random Generator to generate keys"
+    },
+
+    {
+        "rule_id": "23",
+        "short_description": "If a receiver is explicitly exported, declare a permission to protect access to it"
+    },
+
+    {
+        "rule_id": "24",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "25",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "26",
+        "short_description": "Perform Hostname verification if using SSL Sockets, since they don’t do it by default; perform the verification preferably by calling getDefaultHostnameVerifier() with the expected hostname"
+    },
+
+    {
+        "rule_id": "27",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "28",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "29",
+        "short_description": "Use a recommended cryptographic algorithm if dealing with Cipher, Mac, MessageDigest, Signature objects"
+    },
+
+    {
+        "rule_id": "30",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "31",
+        "short_description": ""
+    },
+
+    {
+        "rule_id": "32",
+        "short_description": ""
+    }
+]

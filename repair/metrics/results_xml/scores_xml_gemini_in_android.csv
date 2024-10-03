@@ -1,0 +1,2 @@
+id_,rule,ground_truths,gemini_in_android_outputs,jaccard,levensthein,cosine
+66cf438419c85fc3e29ecabb,23,receiver.name package_name.ToggleWidget receiver.exported true receiver.icon @mipmap/ic_launcher receiver.label @string/widget_start_stop,receiver.name package_name.ToggleWidget receiver.exported true receiver.icon @mipmap/ic_launcher receiver.label @string/widget_start_stop,1.0,1.0,1.0000000000000002

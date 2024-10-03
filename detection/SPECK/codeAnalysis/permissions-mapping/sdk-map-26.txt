@@ -1,0 +1,40 @@
+android.inputmethodservice.InputMethodService.unbindService(android.content.ServiceConnection)void  ::  android.permission.BROADCAST_STICKY
+android.location.LocationManager.addGpsStatusListener(android.location.GpsStatus$Listener)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.addNmeaListener(android.location.GpsStatus$NmeaListener)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.addNmeaListener(android.location.OnNmeaMessageListener)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.addNmeaListener(android.location.OnNmeaMessageListener,android.os.Handler)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.addProximityAlert(double,double,float,long,android.app.PendingIntent)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.getBestProvider(android.location.Criteria,boolean)java.lang.String  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.getLastKnownLocation(java.lang.String)android.location.Location  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.getProvider(java.lang.String)android.location.LocationProvider  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.getProviders(android.location.Criteria,boolean)java.util.List  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.getProviders(boolean)java.util.List  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus$Callback)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus$Callback,android.os.Handler)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.removeUpdates(android.app.PendingIntent)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.removeUpdates(android.location.LocationListener)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.app.PendingIntent)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestLocationUpdates(long,float,android.location.Criteria,android.app.PendingIntent)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestLocationUpdates(long,float,android.location.Criteria,android.location.LocationListener,android.os.Looper)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestSingleUpdate(android.location.Criteria,android.app.PendingIntent)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestSingleUpdate(android.location.Criteria,android.location.LocationListener,android.os.Looper)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestSingleUpdate(java.lang.String,android.app.PendingIntent)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.requestSingleUpdate(java.lang.String,android.location.LocationListener,android.os.Looper)void  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
+android.location.LocationManager.sendExtraCommand(java.lang.String,java.lang.String,android.os.Bundle)boolean  ::  android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION, android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+android.media.AsyncPlayer.play(android.content.Context,android.net.Uri,boolean,android.media.AudioAttributes)void  ::  android.permission.WAKE_LOCK
+android.media.AsyncPlayer.play(android.content.Context,android.net.Uri,boolean,int)void  ::  android.permission.WAKE_LOCK
+android.media.AsyncPlayer.stop()void  ::  android.permission.WAKE_LOCK
+android.media.AudioManager.adjustStreamVolume(int,int,int)void  ::  android.permission.BLUETOOTH
+android.media.AudioManager.setBluetoothScoOn(boolean)void  ::  android.permission.MODIFY_AUDIO_SETTINGS
+android.media.AudioManager.setMicrophoneMute(boolean)void  ::  android.permission.MODIFY_AUDIO_SETTINGS
+android.media.AudioManager.setMode(int)void  ::  android.permission.MODIFY_AUDIO_SETTINGS
+android.media.AudioManager.setSpeakerphoneOn(boolean)void  ::  android.permission.MODIFY_AUDIO_SETTINGS
+android.media.AudioManager.setStreamMute(int,boolean)void  ::  android.permission.BLUETOOTH
+android.media.AudioManager.setStreamVolume(int,int,int)void  ::  android.permission.BLUETOOTH
+android.media.AudioManager.startBluetoothSco()void  ::  android.permission.MODIFY_AUDIO_SETTINGS
+android.media.AudioManager.stopBluetoothSco()void  ::  android.permission.BLUETOOTH, android.permission.MODIFY_AUDIO_SETTINGS
+android.media.MediaPlayer.pause()void  ::  android.permission.WAKE_LOCK
+android.media.MediaPlayer.release()void  ::  android.permission.WAKE_LOCK
+android.media.MediaPlayer.reset()void  ::  android.permission.WAKE_LOCK

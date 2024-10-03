@@ -1,0 +1,222 @@
+_id,rule,language,ground_truths,complete_output,modified_codes,explanations
+66c62575c20fb5508703cac7,11,java,"// fix11: check whether to use getExternalCacheDir() or getCacheDir()
+
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    // fix11
+    long max_size = 1024L * 1024L;
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        File cacheDir = app.getCacheDir();
+        long cacheDirSize = app.getCacheDir().getTotalSpace();
+        if (cacheDirSize > max_size) {
+            cacheDir = app.getExternalCacheDir();
+        }
+        
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        if(new File(cacheDir).exists()) {
+            return new File(cacheDir);
+        }
+        cleanDir(Objects.requireNonNull(cacheDir);
+        cleanDir(Objects.requireNonNull(cacheDir);
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","<MODIFIED_CODE>
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        // Check the size of the cache first
+        long cacheSize = getDirSize(app.getExternalCacheDir());
+        
+        if(cacheSize > 1024 * 1024) { // If cache is greater than 1MB
+            if(new File(app.getExternalCacheDir(),filename).exists()) {
+                return new File(app.getExternalCacheDir(),filename);
+            }
+            cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+            cleanDir(Objects.requireNonNull(app.getCacheDir()));
+            File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+            return tmp;
+        } else {
+            if(new File(app.getCacheDir(),filename).exists()) {
+                return new File(app.getCacheDir(),filename);
+            }
+            cleanDir(Objects.requireNonNull(app.getCacheDir()));
+            File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getCacheDir());
+            return tmp;
+        }
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    return null;
+}
+
+// Utility method to calculate the size of a directory
+private static long getDirSize(File dir) {
+    long size = 0;
+    if (dir != null && dir.isDirectory()) {
+        for (File file : dir.listFiles()) {
+            if (file.isFile()) {
+                size += file.length();
+            } else {
+                size += getDirSize(file);
+            }
+        }
+    }
+    return size;
+}
+</MODIFIED_CODE>
+
+<EXPLANATION>
+To comply with the security guideline, we first determine the size of the cache directory to decide whether to use `getExternalCacheDir()` or `getCacheDir()`. 
+
+1. **Calculate Cache Directory Size**: We added a utility method `getDirSize(File dir)` to calculate the size of a directory, and used it to get the size of `app.getExternalCacheDir()`.
+   
+2. **Check Cache Size**: We defined a condition to check if the cache size is greater than 1 MB (1024 * 1024 bytes).
+
+3. **Modified Cache Usage**:
+   - If the cache size is greater than 1 MB, the code checks and uses `app.getExternalCacheDir()`.
+   - If the cache size is 1 MB or smaller, the code checks and uses `app.getCacheDir()`.
+
+By splitting up the logic for selecting the cache directory based on its size, we ensure the code follows the stated security guideline and uses the appropriate cache directory based on its size.
+</EXPLANATION>
+
+","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        // Check the size of the cache first
+        long cacheSize = getDirSize(app.getExternalCacheDir());
+        
+        if(cacheSize > 1024 * 1024) { // If cache is greater than 1MB
+            if(new File(app.getExternalCacheDir(),filename).exists()) {
+                return new File(app.getExternalCacheDir(),filename);
+            }
+            cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+            cleanDir(Objects.requireNonNull(app.getCacheDir()));
+            File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+            return tmp;
+        } else {
+            if(new File(app.getCacheDir(),filename).exists()) {
+                return new File(app.getCacheDir(),filename);
+            }
+            cleanDir(Objects.requireNonNull(app.getCacheDir()));
+            File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getCacheDir());
+            return tmp;
+        }
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    return null;
+}
+
+// Utility method to calculate the size of a directory
+private static long getDirSize(File dir) {
+    long size = 0;
+    if (dir != null && dir.isDirectory()) {
+        for (File file : dir.listFiles()) {
+            if (file.isFile()) {
+                size += file.length();
+            } else {
+                size += getDirSize(file);
+            }
+        }
+    }
+    return size;
+}","To comply with the security guideline, we first determine the size of the cache directory to decide whether to use `getExternalCacheDir()` or `getCacheDir()`. 
+
+1. **Calculate Cache Directory Size**: We added a utility method `getDirSize(File dir)` to calculate the size of a directory, and used it to get the size of `app.getExternalCacheDir()`.
+   
+2. **Check Cache Size**: We defined a condition to check if the cache size is greater than 1 MB (1024 * 1024 bytes).
+
+3. **Modified Cache Usage**:
+   - If the cache size is greater than 1 MB, the code checks and uses `app.getExternalCacheDir()`.
+   - If the cache size is 1 MB or smaller, the code checks and uses `app.getCacheDir()`.
+
+By splitting up the logic for selecting the cache directory based on its size, we ensure the code follows the stated security guideline and uses the appropriate cache directory based on its size.
+</EXPLANATION>"
+66cf438419c85fc3e29ecabb,23,xml,"<!--fix23: if a receiver is exported, explicitely add a permission to protect it--> 
+<receiver 
+    android:name=""package_name.ToggleWidget""
+    android:exported=""true""
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+</receiver>","<MODIFIED_CODE>
+```xml
+<receiver 
+    android:name=""package_name.ToggleWidget"" 
+    android:exported=""true"" 
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+    <intent-filter>
+        <action android:name=""android.intent.action.MAIN""></action>
+    </intent-filter>
+    <permission android:name=""your.package.name.permission.YOUR_PERMISSION""/>
+</receiver>
+```
+</MODIFIED_CODE>
+
+<EXPLANATION>
+To make the code snippet compliant with the security guideline that mandates declaring a permission to protect explicitly exported receivers, a `permission` attribute was added inside the `<receiver>` element. This permission specifies the required permission to access this receiver, thereby restricting arbitrary applications from triggering it. 
+
+1. Added the `<permission>` element within the `<receiver>` element to define the custom permission needed to access the receiver.
+2. The `android:name` attribute of the `permission` element should specify the custom permission name.
+
+Make sure to also declare the custom permission in the Android manifest file and provide an appropriate label and description for it, as shown below:
+
+```xml
+<permission
+    android:name=""your.package.name.permission.YOUR_PERMISSION""
+    android:label=""@string/permission_label""
+    android:description=""@string/permission_description""
+    android:protectionLevel=""signature""/>
+```
+
+This ensures that only applications with the specific permission can interact with the receiver, thereby adhering to the best security practices.
+
+
+","<receiver 
+    android:name=""package_name.ToggleWidget"" 
+    android:exported=""true"" 
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+    <intent-filter>
+        <action android:name=""android.intent.action.MAIN""></action>
+    </intent-filter>
+    <permission android:name=""your.package.name.permission.YOUR_PERMISSION""/>
+</receiver>","To make the code snippet compliant with the security guideline that mandates declaring a permission to protect explicitly exported receivers, a `permission` attribute was added inside the `<receiver>` element. This permission specifies the required permission to access this receiver, thereby restricting arbitrary applications from triggering it. 
+
+1. Added the `<permission>` element within the `<receiver>` element to define the custom permission needed to access the receiver.
+2. The `android:name` attribute of the `permission` element should specify the custom permission name.
+
+Make sure to also declare the custom permission in the Android manifest file and provide an appropriate label and description for it, as shown below:
+
+
+
+<permission
+    android:name=""your.package.name.permission.YOUR_PERMISSION""
+    android:label=""@string/permission_label""
+    android:description=""@string/permission_description""
+    android:protectionLevel=""signature""/>
+
+
+
+This ensures that only applications with the specific permission can interact with the receiver, thereby adhering to the best security practices."

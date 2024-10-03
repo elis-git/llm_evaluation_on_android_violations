@@ -1,0 +1,145 @@
+_id,rule,language,ground_truths,complete_output,modified_codes,explanations
+66c62575c20fb5508703cac7,11,java,"// fix11: check whether to use getExternalCacheDir() or getCacheDir()
+
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    // fix11
+    long max_size = 1024L * 1024L;
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        File cacheDir = app.getCacheDir();
+        long cacheDirSize = app.getCacheDir().getTotalSpace();
+        if (cacheDirSize > max_size) {
+            cacheDir = app.getExternalCacheDir();
+        }
+        
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        if(new File(cacheDir).exists()) {
+            return new File(cacheDir);
+        }
+        cleanDir(Objects.requireNonNull(cacheDir);
+        cleanDir(Objects.requireNonNull(cacheDir);
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","```java
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        // Check if the file exists in the external cache directory
+        File externalCacheFile = new File(app.getExternalCacheDir(),filename);
+        if(externalCacheFile.exists()) {
+            return externalCacheFile;
+        }
+        // If the file doesn't exist in the external cache, check in the internal cache
+        File internalCacheFile = new File(app.getCacheDir(),filename);
+        if(internalCacheFile.exists()) {
+            return internalCacheFile;
+        }
+        cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+        cleanDir(Objects.requireNonNull(app.getCacheDir()));
+        // Create a temporary file in the external cache directory, if the size is expected to be larger than 1 MB
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}
+```
+
+<EXPLANATION>
+The code has been modified to follow the best practice guideline for cache directory selection.
+
+1. **File existence check:** The code now checks for the existence of the file in both the internal cache directory (using `getCacheDir()`) and the external cache directory (using `getExternalCacheDir()`).
+2. **File creation:** If the file is not found in either directory, it creates a temporary file in the external cache directory. 
+    * This is based on the assumption that the cache size is likely to be larger than 1 MB, which is the recommended threshold for using `getExternalCacheDir()`.
+
+These modifications ensure that the code adheres to the guideline and uses the appropriate cache directory based on the expected size of the cached file. 
+
+
+","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        // Check if the file exists in the external cache directory
+        File externalCacheFile = new File(app.getExternalCacheDir(),filename);
+        if(externalCacheFile.exists()) {
+            return externalCacheFile;
+        }
+        // If the file doesn't exist in the external cache, check in the internal cache
+        File internalCacheFile = new File(app.getCacheDir(),filename);
+        if(internalCacheFile.exists()) {
+            return internalCacheFile;
+        }
+        cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+        cleanDir(Objects.requireNonNull(app.getCacheDir()));
+        // Create a temporary file in the external cache directory, if the size is expected to be larger than 1 MB
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","The code has been modified to follow the best practice guideline for cache directory selection.
+
+1. **File existence check:** The code now checks for the existence of the file in both the internal cache directory (using `getCacheDir()`) and the external cache directory (using `getExternalCacheDir()`).
+2. **File creation:** If the file is not found in either directory, it creates a temporary file in the external cache directory. 
+    * This is based on the assumption that the cache size is likely to be larger than 1 MB, which is the recommended threshold for using `getExternalCacheDir()`.
+
+These modifications ensure that the code adheres to the guideline and uses the appropriate cache directory based on the expected size of the cached file. 
+"
+66cf438419c85fc3e29ecabb,23,xml,"<!--fix23: if a receiver is exported, explicitely add a permission to protect it--> 
+<receiver 
+    android:name=""package_name.ToggleWidget""
+    android:exported=""true""
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+</receiver>","```xml
+<MODIFIED_CODE>
+<receiver 
+    android:name=""package_name.ToggleWidget"" 
+    android:exported=""true"" 
+    android:permission=""com.example.app.PERMISSION""
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+</receiver>
+```
+
+<EXPLANATION>
+The code snippet has been modified by adding a `android:permission` attribute to the `<receiver>` tag. This attribute specifies the permission that is required for any other app to access the `ToggleWidget` receiver. This ensures that only authorized apps can interact with the receiver, enhancing security.
+ 
+By setting a permission for the receiver, the application takes control over who can access it. This restricts unintended access and makes the application more secure. 
+ 
+It's important to note that the `com.example.app.PERMISSION` is just an example. You should replace it with a unique, descriptive permission name that is relevant to your app's functionality and security needs. You would also need to declare this permission in your `AndroidManifest.xml` file.
+
+
+","<receiver 
+    android:name=""package_name.ToggleWidget"" 
+    android:exported=""true"" 
+    android:permission=""com.example.app.PERMISSION""
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+</receiver>","The code snippet has been modified by adding a `android:permission` attribute to the `<receiver>` tag. This attribute specifies the permission that is required for any other app to access the `ToggleWidget` receiver. This ensures that only authorized apps can interact with the receiver, enhancing security.
+ 
+By setting a permission for the receiver, the application takes control over who can access it. This restricts unintended access and makes the application more secure. 
+ 
+It's important to note that the `com.example.app.PERMISSION` is just an example. You should replace it with a unique, descriptive permission name that is relevant to your app's functionality and security needs. You would also need to declare this permission in your `AndroidManifest.xml` file."

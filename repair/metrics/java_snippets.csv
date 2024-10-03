@@ -1,0 +1,128 @@
+_id,rule,ground_truths,gemini-1.5-flash-001,gpt-4o,gemini_in_android
+66c62575c20fb5508703cac7,11,"// fix11: check whether to use getExternalCacheDir() or getCacheDir()
+
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    // fix11
+    long max_size = 1024L * 1024L;
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        File cacheDir = app.getCacheDir();
+        long cacheDirSize = app.getCacheDir().getTotalSpace();
+        if (cacheDirSize > max_size) {
+            cacheDir = app.getExternalCacheDir();
+        }
+        
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        if(new File(cacheDir).exists()) {
+            return new File(cacheDir);
+        }
+        cleanDir(Objects.requireNonNull(cacheDir);
+        cleanDir(Objects.requireNonNull(cacheDir);
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        // Check if the file exists in the external cache directory
+        File externalCacheFile = new File(app.getExternalCacheDir(),filename);
+        if(externalCacheFile.exists()) {
+            return externalCacheFile;
+        }
+        // If the file doesn't exist in the external cache, check in the internal cache
+        File internalCacheFile = new File(app.getCacheDir(),filename);
+        if(internalCacheFile.exists()) {
+            return internalCacheFile;
+        }
+        cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+        cleanDir(Objects.requireNonNull(app.getCacheDir()));
+        // Create a temporary file in the external cache directory, if the size is expected to be larger than 1 MB
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        // Check the size of the cache first
+        long cacheSize = getDirSize(app.getExternalCacheDir());
+        
+        if(cacheSize > 1024 * 1024) { // If cache is greater than 1MB
+            if(new File(app.getExternalCacheDir(),filename).exists()) {
+                return new File(app.getExternalCacheDir(),filename);
+            }
+            cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+            cleanDir(Objects.requireNonNull(app.getCacheDir()));
+            File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+            return tmp;
+        } else {
+            if(new File(app.getCacheDir(),filename).exists()) {
+                return new File(app.getCacheDir(),filename);
+            }
+            cleanDir(Objects.requireNonNull(app.getCacheDir()));
+            File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getCacheDir());
+            return tmp;
+        }
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    return null;
+}
+
+// Utility method to calculate the size of a directory
+private static long getDirSize(File dir) {
+    long size = 0;
+    if (dir != null && dir.isDirectory()) {
+        for (File file : dir.listFiles()) {
+            if (file.isFile()) {
+                size += file.length();
+            } else {
+                size += getDirSize(file);
+            }
+        }
+    }
+    return size;
+}","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        File cacheDir = app.getCacheDir();
+        if(new File(cacheDir,filename).exists()) {
+            return new File(cacheDir,filename);
+        }
+        cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+        cleanDir(Objects.requireNonNull(app.getCacheDir()));
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}"

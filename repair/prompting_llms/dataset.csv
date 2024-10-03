@@ -1,0 +1,64 @@
+_id,rule,language,vulnerable_line,vulnerable_snippet,ground_truths
+66c62575c20fb5508703cac7,11,java,"if(new File(app.getExternalCacheDir(),filename).exists()) {","1: public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+2:     try {
+3:         byte[] sha1b = app.getSha256();
+4:         File f = new File(app.getFilesDir(),path);
+5:         if(!f.exists()) {
+6:             return null;
+7:         }
+8:         String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+9:         if(new File(app.getExternalCacheDir(),filename).exists()) {
+10:             return new File(app.getExternalCacheDir(),filename);
+11:         }
+12:         cleanDir(Objects.requireNonNull(app.getExternalCacheDir()));
+13:         cleanDir(Objects.requireNonNull(app.getCacheDir()));
+14:         File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,app.getExternalCacheDir());
+15:         // rest of the code
+16:     }catch (Exception e) {
+17:         e.printStackTrace();
+18:         progressListener.onProgress(100);
+19:     }
+20:     // rest of the code
+21: }","// fix11: check whether to use getExternalCacheDir() or getCacheDir()
+
+public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
+    // fix11
+    long max_size = 1024L * 1024L;
+    try {
+        byte[] sha1b = app.getSha256();
+        File f = new File(app.getFilesDir(),path);
+        if(!f.exists()) {
+            return null;
+        }
+        File cacheDir = app.getCacheDir();
+        long cacheDirSize = app.getCacheDir().getTotalSpace();
+        if (cacheDirSize > max_size) {
+            cacheDir = app.getExternalCacheDir();
+        }
+        
+        String suffix = "".""+filename.split(""\\."")[filename.split(""\\."").length-1];
+        if(new File(cacheDir).exists()) {
+            return new File(cacheDir);
+        }
+        cleanDir(Objects.requireNonNull(cacheDir);
+        cleanDir(Objects.requireNonNull(cacheDir);
+        File tmp = File.createTempFile(filename.replace(suffix,""""),suffix,cacheDir);
+        // rest of the code
+    }catch (Exception e) {
+        e.printStackTrace();
+        progressListener.onProgress(100);
+    }
+    // rest of the code
+}"
+66cf438419c85fc3e29ecabb,23,xml,"android:name=""hu.vmiklos.plees_tracker.ToggleWidget""","1: <receiver 
+2:     android:name=""package_name.ToggleWidget"" 
+3:     android:exported=""true"" 
+4:     android:icon=""@mipmap/ic_launcher"" 
+5:     android:label=""@string/widget_start_stop"">
+6: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it--> 
+<receiver 
+    android:name=""package_name.ToggleWidget""
+    android:exported=""true""
+    android:icon=""@mipmap/ic_launcher"" 
+    android:label=""@string/widget_start_stop"">
+</receiver>"
