@@ -21,7 +21,7 @@ class PromptManager:
 
         self.system_role = ""
 
-        self.codes_csv_path = "repair/prompting_llms/dataset.csv"
+        self.codes_csv_path = "repair/prompting_llms/sample_dataset.csv"
 
         self.df = pd.read_csv(self.codes_csv_path)
 
