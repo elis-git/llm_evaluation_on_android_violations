@@ -27,7 +27,7 @@ The source code of SPECK is reported as well, containing a new script `detection
 Results from LLMs are obtained using the following script `repair/prompting_llms/helpers.py`. It includes:
 
 - `PromptManager` to prepare all the prompts given the snippets and relative information
-- `Requester` to send prompts via APIs if possible (GPT-4o and Gemini 1.5 Flash)
+- `Requester` to send prompts via APIs 
 - `OutputManager` to get and save results from LLMs
 
 ## Similarity Metrics 
