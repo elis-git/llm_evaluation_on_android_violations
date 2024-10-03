@@ -1,3 +1,6 @@
+# ignore this
+.gitignore
+
 # ignore python virtual environment
 .venv/
 
