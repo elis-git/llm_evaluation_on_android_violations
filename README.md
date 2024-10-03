@@ -16,6 +16,8 @@ Each entry in the dataset includes the following information:
 
 Vulnerabilities are detected using [SPECK](https://github.com/SPRITZ-Research-Group/SPECK).
 
+**NOTE**: The dataset excludes any information about the original APKs, as detection results were not shared with developers. Additionally, the snippets focus solely on the relevant parts of the Java methods, with *"rest of the code"* comments marking the omitted sections.
+
 #### SPECK modifications
 
 The source code of SPECK is reported as well, containing a new script `detection/SPECK/additional/mapper.py` which performs a mapping between the faulty line in the decompiled file to the corresponding line in the original source code file and then extracts the the context (i.e, Java method or full component declaration) of the faulty line detected by SPECK.
