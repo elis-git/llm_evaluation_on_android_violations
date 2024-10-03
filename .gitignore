@@ -1,5 +1,4 @@
-# ignore this
-.gitignore
+*__pycache__/
 
 # ignore python virtual environment
 .venv/

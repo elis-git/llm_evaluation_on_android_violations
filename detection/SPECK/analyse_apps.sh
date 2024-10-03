@@ -15,12 +15,8 @@ if [ -d "$dir_path" ]; then
         echo "Analyzing $apk_name ..."
 
         # use this to save all results
-        python3 /home/elis/Desktop/uni/assegno/llm_x_apr/llm-evaluation-master/SPECK_mod/SPECK/Scan.py -s "$apk_path" -D mongodb+srv://elisbreb:nfT3uIn7vrnFgLOU@cluster0.nbeceqe.mongodb.net/trial_2
+        python3 /path-to-scan/Scan.py -s "$apk_path" -D your-db
     
-        
-        # use this to try it out:
-        # python3 /your-path-to/SPECK-mod/SPECK/Scan.py -s "$apk_path" -D mongodb+srv://elisbreb:nfT3uIn7vrnFgLOU@cluster0.nbeceqe.mongodb.net/trial
- 
         echo ""
     done
 else
