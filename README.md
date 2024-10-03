@@ -4,7 +4,7 @@ This repository contains a newly created dataset of Android vulnerabilities extr
 
 ## Dataset Details
 
-The dataset contains 272 vulnerabilities, which are violations to the [Android Security Best Practices](https://developer.android.com/privacy-and-security/security-tips) in both Java classes and the Android Manifest file. There are a total of 176 violations written in Java and 96 violations written in XML, covering 18 different categories of vulnerabilities.
+The dataset (see `dataset.csv`) contains 272 vulnerabilities, which are violations to the [Android Security Best Practices](https://developer.android.com/privacy-and-security/security-tips) in both Java classes and the Android Manifest file. There are a total of 176 violations written in Java and 96 violations written in XML, covering 18 different categories of vulnerabilities.
 
 Each entry in the dataset includes the following information:
 
@@ -46,7 +46,7 @@ The directory `repair/metrics` contains the scripts:
 
 The `repair/__init__.py` file starts the complete flow for repair (prompting and metrics evaluation).
 
-A sample dataset is provided with the aim of making clearer the evaluation process to compute similarity scores(see `repair/prompting_llms/results/llm_outputs.py`) and it already contains llm outputs.
+A sample dataset is provided with the aim of making clearer the evaluation process to compute similarity scores (see `repair/prompting_llms/results/llm_outputs.py`) and it already contains llm outputs.
 
 In addition, the metrics results for **llm_outputs.csv** are saved in:
 - `repair/metrics/results_java` : it contains CodeBLEU similarity scores for each model
