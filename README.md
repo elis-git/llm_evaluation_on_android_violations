@@ -42,7 +42,7 @@ The directory `repair/metrics` contains the scripts:
 
 ## Additional Information
 
-The `repair/__init__.py` file starts the whole implementation for repair (prompting and metrics evaluation).
+The `repair/__init__.py` file starts the complete flow for repair (prompting and metrics evaluation).
 
 A sample dataset is provided with the aim of making clearer the evaluation process to compute similarity scores(see `repair/prompting_llms/results/llm_outputs.py`) and it already contains llm outputs.
 
