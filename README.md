@@ -1,6 +1,6 @@
 # An Investigation of LLMs for Android Vulnerability Repair 
 
-This repository contains a newly dataset of Android vulnerabilities extracted from real-world Android applications, coupled with their ground truth fixes. Three chat-based LLMs (GPT-4o, Gemini 1.5 Flash and Gemini in Android Studio) are tested on this new dataset to assess their performance in repairing such vulnerabilities. The code used to compare LLMs repairs with ground truth is shared as well.
+This repository contains a newly created dataset of Android vulnerabilities extracted from real-world Android applications, coupled with their ground truth fixes. Three chat-based LLMs (GPT-4o, Gemini 1.5 Flash and Gemini in Android Studio) are tested on this new dataset to assess their performance in repairing such vulnerabilities. The code used to compare LLMs repairs with ground truth is shared as well.
 
 ## Dataset Details
 
