@@ -4139,7 +4139,7 @@ android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE""
 android:exported = ""true"" <!--fix20--> >
 </service>"
 65369d89099493287a2c560f,20,xml,"1: <service 
-2:     android:name=""app_package..WearRequestListenerService"" 
+2:     android:name=""app_package.WearRequestListenerService"" 
 3:     android:exported=""true"">
 4: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
 
