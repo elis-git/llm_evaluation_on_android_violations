@@ -3736,10 +3736,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".control.ServicioAplicacion"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+5: </service>","<service
 android:name="".control.ServicioAplicacion""
 android:enabled=""true""
 android:exported=""true"">
@@ -3793,12 +3790,10 @@ android:exported=""true"">
     </intent-filter>
     android:permission=""custom_permission"" <!--choose your permission here--> >
 </service>"
-66c7c6394f8c1d89a6c7c909,20,xml,"1: <service android:name="".NotificationsService"" android:enabled=""true""  android:exported=""true""/>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-<service 
+66c7c6394f8c1d89a6c7c909,20,xml,"1: <service android:name="".NotificationsService"" android:enabled=""true""  android:exported=""true""/>","<service 
     android:name="".NotificationsService"" android:enabled=""true""  android:exported=""true""
     android:permission=""custom_permission"" <!--choose your permission here--> />"
-66c7c6444f8c1d89a6c7c910,20,xml,"1: <service android:name=""app_package.Stories.recorder.StoryUploadingService"" android:enabled=""true"" android:exported=""true""/>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-<service 
+66c7c6444f8c1d89a6c7c910,20,xml,"1: <service android:name=""app_package.Stories.recorder.StoryUploadingService"" android:enabled=""true"" android:exported=""true""/>","<service 
     android:name=""app_package.Stories.recorder.StoryUploadingService"" android:enabled=""true""
     android:permission=""custom_permission"" <!--choose your permission here--> />"
 66cf488b873b5cfd1c00daab,20,xml,"1: <service 
