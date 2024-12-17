@@ -1,10 +1,10 @@
-# An Investigation of LLMs for Android Vulnerability Repair 
+# A Dataset for Evaluating LLMs Vulnerability Repair Performance in Android Applications
 
-This repository contains a newly created dataset of Android vulnerabilities extracted from real-world Android applications, coupled with their ground truth fixes. Three chat-based LLMs (GPT-4o, Gemini 1.5 Flash and Gemini in Android Studio) are tested on this new dataset to assess their performance in repairing such vulnerabilities. The code used to compare LLMs repairs with ground truth is shared as well.
+This repository contains a newly created dataset of Android faulty code extracted from real-world Android applications, coupled with their ground truth fixes. Three chat-based LLMs (GPT-4o, Gemini 1.5 Flash and Gemini in Android Studio) are tested on this new dataset to assess their performance in repairing them. The code used to compare LLMs repairs with ground truth is shared as well.
 
 ## Dataset Details
 
-The dataset (see `dataset.csv`) contains 272 vulnerabilities, which are violations to the [Android Security Best Practices](https://developer.android.com/privacy-and-security/security-tips) in both Java classes and the Android Manifest file. There are a total of 176 violations written in Java and 96 violations written in XML, covering 18 different categories of vulnerabilities.
+The dataset (see `dataset.csv`) contains 272 vulnerabilities, which are violations to the [Android Security Best Practices](https://developer.android.com/privacy-and-security/security-tips) in both Java classes and the Android Manifest file. There are a total of 176 violations written in Java and 96 violations written in XML, covering 18 different categories of security violations.
 
 Each entry in the dataset includes the following information:
 
@@ -14,7 +14,7 @@ Each entry in the dataset includes the following information:
 -   `vulnerable_snippet`: the vulnerable code snippet
 -   `ground_truths`     : the corresponding ground truth repair
 
-Vulnerabilities are detected using [SPECK](https://github.com/SPRITZ-Research-Group/SPECK).
+Violations are detected using [SPECK](https://github.com/SPRITZ-Research-Group/SPECK).
 
 **NOTE**: The dataset excludes any information about the original APKs, as detection results were not shared with developers. Additionally, the snippets focus solely on the relevant parts of the Java methods, with *"rest of the code"* comments marking the omitted sections.
 
