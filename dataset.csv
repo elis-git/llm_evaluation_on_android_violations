@@ -3626,19 +3626,15 @@ return true;
 6536952ca598bba2731541ea,20,xml,"1: <service 
 2:     android:name="".NotificationCatcher"" 
 3:     android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"">
-4: </service>","<!--fix20: if a service is declaring a permission, explicitely set it as exported-->
-<service
+4: </service>","<service
 android:name="".NotificationCatcher""
 android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE""
-android:exported = ""true""  >
+android:exported = ""true"" >
 </service>"
 65369d89099493287a2c560f,20,xml,"1: <service 
 2:     android:name=""app_package..WearRequestListenerService"" 
 3:     android:exported=""true"">
-4: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+4: </service>","<service
 android:name=""app_package.WearRequestListenerService""
 android:exported=""true""
 android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -3647,10 +3643,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".OnClearFromRecentService""
 3:     android:enabled=""true""
 4:     android:exported=""true""
-5:     android:stopWithTask=""false"" />","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+5:     android:stopWithTask=""false"" />","<service
 android:name="".OnClearFromRecentService""
 android:enabled=""true""
 android:exported=""true""
@@ -3661,10 +3654,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".api.ExternalOpenVPNService"" 
 3:     android:process="":openvpn"" 
 4:     android:exported=""true"" tools:ignore=""ExportedService"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+5: </service>","<service
 android:name="".api.ExternalOpenVPNService""
 android:process="":openvpn""
 android:exported=""true"" tools:ignore=""ExportedService""
@@ -3674,10 +3664,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".services.NetworkWhiteListService"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+5: </service>","<service
 android:name="".services.NetworkWhiteListService""
 android:enabled=""true""
 android:exported=""true""
@@ -3687,10 +3674,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".service.BlueService"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+5: </service>","<service
 android:name="".service.BlueService""
 android:enabled=""true""
 android:exported=""true""
@@ -3699,10 +3683,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 6536adc20d3696b34269dc40,20,xml,"1: <service 
 2:     android:name="".AuthenticatorService"" 
 3:     android:exported=""true"">
-4: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+4: </service>","<service
 android:name="".AuthenticatorService""
 android:exported=""true""
 android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -3711,8 +3692,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name=""app_package.NotificationService"" 
 3:     android:label=""@string/service_name"" 
 4:     android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"">
-5: </service>","<!--fix20: if a service is declaring a permission, explicitely set it as exported-->
-<service
+5: </service>","<service
 android:name=""app_package.NotificationService"" 
 android:label=""@string/service_name"" 
 android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE""
@@ -3724,10 +3704,7 @@ android:exported = ""true""  >
 4:     android:icon=""@mipmap/ic_launcher"" 
 5:     android:exported=""true"" 
 6:     android:foregroundServiceType=""location"">
-7: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+7: </service>","<service
 android:name="".auto.CarAppService""
 android:label=""@string/app_name""
 android:icon=""@mipmap/ic_launcher""
@@ -3748,10 +3725,7 @@ android:exported = ""true""  >
 3:     android:enabled=""true"" 
 4:     android:exported=""true"" 
 5:     android:process="":remote_api"" tools:ignore=""ExportedService"">
-6: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+6: </service>","<service
 android:name=""app_package.OpenPgpService""
 android:enabled=""true""
 android:exported=""true""
@@ -3774,10 +3748,7 @@ android:exported=""true"">
 2:     android:name="".control.ServicioLocalizador"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+5: </service>","<service
 android:name="".control.ServicioLocalizador""
 android:enabled=""true""
 android:exported=""true"">
@@ -3797,10 +3768,7 @@ android:exported=""true"">
 3:         <action android:name=""android.accounts.AccountAuthenticator""/>
 4:     </intent-filter>
 5:     <meta-data android:name=""android.accounts.AccountAuthenticator"" android:resource=""@xml/auth""/>
-6: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service android:name="".AuthenticatorService"" android:exported=""true"">
+6: </service>","<service android:name="".AuthenticatorService"" android:exported=""true"">
     <intent-filter>
         <action android:name=""android.accounts.AccountAuthenticator""/>
     </intent-filter>
@@ -3810,10 +3778,7 @@ android:exported=""true"">
 66c7c6354f8c1d89a6c7c906,20,xml,"1: <service 
 2:     android:name="".ContactsSyncAdapterService"" 
 3:     android:exported=""true"">
-4: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+4: </service>","<service 
     android:name="".ContactsSyncAdapterService"" 
     android:exported=""true""
     android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -3822,24 +3787,17 @@ android:exported=""true"">
 2:     <intent-filter>
 3:         <action android:name=""android.media.browse.MediaBrowserService""/>
 4:     </intent-filter>
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service android:name="".MusicBrowserService"" android:exported=""true"">
+5: </service>","<service android:name="".MusicBrowserService"" android:exported=""true"">
     <intent-filter>
         <action android:name=""android.media.browse.MediaBrowserService""/>
     </intent-filter>
     android:permission=""custom_permission"" <!--choose your permission here--> >
 </service>"
 66c7c6394f8c1d89a6c7c909,20,xml,"1: <service android:name="".NotificationsService"" android:enabled=""true""  android:exported=""true""/>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
 <service 
     android:name="".NotificationsService"" android:enabled=""true""  android:exported=""true""
     android:permission=""custom_permission"" <!--choose your permission here--> />"
 66c7c6444f8c1d89a6c7c910,20,xml,"1: <service android:name=""app_package.Stories.recorder.StoryUploadingService"" android:enabled=""true"" android:exported=""true""/>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
 <service 
     android:name=""app_package.Stories.recorder.StoryUploadingService"" android:enabled=""true""
     android:permission=""custom_permission"" <!--choose your permission here--> />"
@@ -3847,10 +3805,7 @@ android:exported=""true"">
 2:     android:name=""app_package.IntentServiceAction"" 
 3:     android:exported=""true"" 
 4:     android:foregroundServiceType=""specialUse"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service android:name=""app_package.IntentServiceAction"" 
+5: </service>","<service android:name=""app_package.IntentServiceAction"" 
     android:exported=""true"" 
     android:foregroundServiceType=""specialUse""
     android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -3861,10 +3816,7 @@ android:exported=""true"">
 4:     android:label=""@string/app_name"" 
 5:     android:enabled=""true"" 
 6:     android:exported=""true"" tools:ignore=""ExportedService"">
-7: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+7: </service>","<service 
     android:name="".playback.service.PlaybackService"" 
     android:foregroundServiceType=""mediaPlayback"" 
     android:label=""@string/app_name"" 
@@ -3877,10 +3829,7 @@ android:exported=""true"">
 3:     android:icon=""@mipmap/ic_launcher"" 
 4:     android:label=""@string/backup_service_name"" 
 5:     android:exported=""true"">
-6: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+6: </service>","<service 
     android:name=""app_package.BackupService"" 
     android:icon=""@mipmap/ic_launcher"" 
     android:label=""@string/backup_service_name"" 
@@ -3892,10 +3841,7 @@ android:exported=""true"">
 3:     android:enabled=""true"" 
 4:     android:foregroundServiceType=""connectedDevice"" 
 5:     android:exported=""true"" tools:ignore=""ExportedActivity"">
-6: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+6: </service>","<service 
     android:name=""app_package.service.MeshService"" 
     android:enabled=""true"" 
     android:foregroundServiceType=""connectedDevice"" 
@@ -3908,10 +3854,7 @@ android:exported=""true"">
 4:     android:foregroundServiceType=""mediaProjection"" 
 5:     android:icon=""@mipmap/ic_launcher"" 
 6:     android:label=""@string/tile_label"" tools:targetApi=""q"">
-7: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+7: </service>","<service 
     android:name=""app_package.services.BasicForegroundService"" 
     android:exported=""true"" 
     android:foregroundServiceType=""mediaProjection"" 
@@ -3923,10 +3866,7 @@ android:exported=""true"">
 2:     android:name=""app_package.SyncAdapterService"" 
 3:     android:exported=""true"" 
 4:     android:process="":sync"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+5: </service>","<service 
     android:name=""app_package.sync.adapter.SyncAdapterService"" 
     android:exported=""true"" 
     android:process="":sync""
@@ -3939,10 +3879,7 @@ android:exported=""true"">
 5:     <intent-filter>
 6:         <action android:name=""android.media.browse.MediaBrowserService"" />
 7:     </intent-filter>
-8: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+8: </service>","<service
     android:name=""app_package.AudioService""
     android:foregroundServiceType=""mediaPlayback""
     android:exported=""true"">
@@ -3955,10 +3892,7 @@ android:exported=""true"">
 2:     android:name=""app_package.MediaService"" 
 3:     android:exported=""true"" 
 4:     android:foregroundServiceType=""mediaPlayback"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+5: </service>","<service 
     android:name=""app_package.service.MediaService"" 
     android:exported=""true"" 
     android:foregroundServiceType=""mediaPlayback""
@@ -3967,10 +3901,7 @@ android:exported=""true"">
 66cf445be9a0cd19d2722f6f,20,xml,"1: <service 
 2:     android:name="".playback.SatunesCarMusicService"" 
 3:     android:exported=""true"">
-4: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+4: </service>","<service 
     android:name="".playback.SatunesCarMusicService"" 
     android:exported=""true""
     android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -3979,10 +3910,7 @@ android:exported=""true"">
 2:     android:name="".service.PlayerMediaBrowserService"" 
 3:     android:exported=""true"" 
 4:     android:enabled=""false"" tools:ignore=""ExportedService"">
-5: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service 
+5: </service>","<service 
     android:name="".service.PlayerMediaBrowserService"" 
     android:exported=""true"" 
     android:enabled=""false"" tools:ignore=""ExportedService""
@@ -3999,10 +3927,7 @@ android:exported=""true"">
 9:     <meta-data
 10:         android:name=""android.content.SyncAdapter""
 11:         android:resource=""@xml/sync_adapter"" />
-12: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
-
-
-<service
+12: </service>","<service
     android:name="".sync.SyncService""
     android:exported=""true""
     android:process="":sync""
@@ -4108,7 +4033,7 @@ android:exported=""true"">
 10: </receiver>","<receiver
      android:name=""BackupScheduleReceiver""
      android:exported=""true""
-     android:permission = ""custom_permission"" <!--fix23--> >
+     android:permission = ""custom_permission""  >
      <intent-filter>
          <action android:name=""android.intent.action.BOOT_COMPLETED"" />
      </intent-filter>
