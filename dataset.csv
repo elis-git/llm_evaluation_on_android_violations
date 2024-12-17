@@ -6,16 +6,13 @@ _id,rule,language,vulnerable_snippet,ground_truths
 5:     sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(""file://""+file.getAbsolutePath()));
 6:     sendIntent.setType(""text/plain"");
 7:     startActivity(sendIntent);
-8: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private void sendEmailRecipe()  {
+8: }","private void sendEmailRecipe()  {
     // rest of the code
     Intent sendIntent = new Intent(Intent.ACTION_SEND);
     sendIntent.putExtra(Intent.EXTRA_SUBJECT, app.mRecipeName);
     sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse (""file://""+file.getAbsolutePath()));
     sendIntent.setType(""text/plain"");
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(sendIntent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -31,17 +28,14 @@ private void sendEmailRecipe()  {
 6:     }
 7:     action = intent.getAction();
 8:     // rest of the code
-9: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void onCreate(Bundle icicle)     {
+9: }","public void onCreate(Bundle icicle)     {
     // rest of the code
     final Intent intent = getIntent();
     if (intent.getData() == null)  {
         intent.setData(Provider.Recipes.CONTENT_URI);
     }
     action = intent.getAction();
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -62,10 +56,7 @@ public void onCreate(Bundle icicle)     {
 10:         }
 11:         // rest of the code
 12:     }
-13: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void onClick(View view)  {
+13: }","public void onClick(View view)  {
     int id = view.getId();
     Log.i(TAG, ""onClick(View "" + view + "", id "" + id + "")..."");
     switch (id)  {
@@ -73,7 +64,7 @@ public void onClick(View view)  {
             Log.i(TAG, ""onClick: pick_button..."");
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
             intent.setType(""image/*"");
-            // fix1
+            
             List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
             if (possibleActivitiesList.size() > 1) {
                 String title = getResources().getString(R.string.chooser_title);
@@ -91,14 +82,11 @@ public void onClick(View view)  {
 4:     i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 5:     mutipleFilesActivityResultLauncher.launch(i);
 6:     // rest of the code
-7: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void onClickFilesSelect()  {
+7: }","public void onClickFilesSelect()  {
     Intent i = new Intent(Intent.ACTION_GET_CONTENT);
     i.setType(""*/*"");
     i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(i, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -112,14 +100,11 @@ public void onClickFilesSelect()  {
 3:     Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
 4:     intent.setData(Uri.parse(""package:"" + getPackageName()));
 5:     batteryActivityResultLauncher.launch(intent);
-6: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void askIgnoreBatteryOptimizations()  {
+6: }","public void askIgnoreBatteryOptimizations()  {
     // rest of the code
     Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
     intent.setData(Uri.parse(""package:"" + getPackageName()));
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -135,15 +120,12 @@ public void askIgnoreBatteryOptimizations()  {
 6:         gallerySelectorActivityResultLauncher.launch(intent);
 7:     }
 8:     // rest of the code
-9: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void onClickImageSelect()  {
+9: }","public void onClickImageSelect()  {
     try  {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, ""image/* video/*"");
-        // fix1
+        
         List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
         if (possibleActivitiesList.size() > 1) {
             String title = getResources().getString(R.string.chooser_title);
@@ -159,16 +141,13 @@ public void onClickImageSelect()  {
 4: sendIntent.putExtra(Intent.EXTRA_TEXT, String.format(activityContext.getString(R.string.check_out), getString(R.string.app_name), PLAY_STORE_LINK));
 5: sendIntent.setType(""text/plain"");
 6: startActivity(sendIntent);
-7: // rest of the code","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-// rest of the code
+7: // rest of the code","// rest of the code
 Intent sendIntent = new Intent();
 sendIntent.setAction(Intent.ACTION_SEND);
 sendIntent.putExtra(Intent.EXTRA_TEXT,
 String.format(activityContext.getString(R.string.check_out), getString(R.string.app_name), PLAY_STORE_LINK));
 sendIntent.setType(""text/plain"");
-// fix1
+
 List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(sendIntent, PackageManager.MATCH_ALL);
 if (possibleActivitiesList.size() > 1) {
     String title = getResources().getString(R.string.chooser_title);
@@ -185,10 +164,7 @@ if (possibleActivitiesList.size() > 1) {
 7:         intent.putExtra(Intent.EXTRA_CC, cc);
 8:         intent.setType(""message/rfc822"");
 9:         return intent;
-10:     }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public static Intent newEmailIntent(String address, String subject, String body, String cc)  {
+10:     }","public static Intent newEmailIntent(String address, String subject, String body, String cc)  {
     Intent intent = new Intent(Intent.ACTION_SEND);
     intent.putExtra(Intent.EXTRA_EMAIL, new String[] {
     address});
@@ -196,7 +172,7 @@ public static Intent newEmailIntent(String address, String subject, String body,
     intent.putExtra(Intent.EXTRA_SUBJECT, subject);
     intent.putExtra(Intent.EXTRA_CC, cc);
     intent.setType(""message/rfc822"");
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -210,15 +186,11 @@ public static Intent newEmailIntent(String address, String subject, String body,
 3:     shortcutIntent.setData(Uri.parse(historyEntry.getUrl()));
 4:     shortcutIntent.setPackage(""org.midorinext.android"");
 5:     // rest of the code
-6: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-
-public static void createShortcut(@NonNull Activity activity,@NonNull HistoryEntry historyEntry,@NonNull Bitmap favicon)  {
+6: }","public static void createShortcut(@NonNull Activity activity,@NonNull HistoryEntry historyEntry,@NonNull Bitmap favicon)  {
     Intent shortcutIntent = new Intent(Intent.ACTION_VIEW);
     shortcutIntent.setData(Uri.parse(historyEntry.getUrl()));
     shortcutIntent.setPackage(package_name);
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(shortcutIntent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -240,10 +212,7 @@ public static void createShortcut(@NonNull Activity activity,@NonNull HistoryEnt
 11:         requestPermissions(new String[] {
 12:             Manifest.permission.WRITE_EXTERNAL_STORAGE}, getRingtonePreference().getPermissionRequestCode());
 13:         }
-14:     }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private void newRingtone()  {
+14:     }","private void newRingtone()  {
     // rest of the code
     if (hasPerm)  {
         final Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
@@ -251,7 +220,7 @@ private void newRingtone()  {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)  {
         chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{""audio/*"", ""application/ogg""});
         }
-        // fix1
+        
         List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
         if (possibleActivitiesList.size() > 1) {
             String title = getResources().getString(R.string.chooser_title);
@@ -272,16 +241,13 @@ private void newRingtone()  {
 9:         Log.w(TAG, ""couldn't complete ACTION_GET_CONTENT intent, no activity found. falling back."");
 10:         Toast.makeText(activity, R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG).show();
 11:     }
-12: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private static void selectMediaType(Activity activity, String type, int requestCode)  {
+12: }","private static void selectMediaType(Activity activity, String type, int requestCode)  {
     final Intent intent = new Intent();
     intent.setType(type);
     // rest of the code
     intent.setAction(Intent.ACTION_GET_CONTENT);
     try  {
-        // fix1
+        
         List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
         if (possibleActivitiesList.size() > 1) {
             String title = getResources().getString(R.string.chooser_title);
@@ -302,16 +268,13 @@ private static void selectMediaType(Activity activity, String type, int requestC
 6:         intent.setDataAndType(slide.getUri(), slide.getContentType());
 7:         context.startActivity(intent);
 8:     }
-9: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private void previewImageDraft(final @NonNull Slide slide)  {
+9: }","private void previewImageDraft(final @NonNull Slide slide)  {
     if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null)  {
         Intent intent = new Intent(context, MediaPreviewActivity.class);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
         intent.setDataAndType(slide.getUri(), slide.getContentType());
-        // fix1
+        
         List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
         if (possibleActivitiesList.size() > 1) {
             String title = getResources().getString(R.string.chooser_title);
@@ -330,16 +293,13 @@ private void previewImageDraft(final @NonNull Slide slide)  {
 8:     } catch (ActivityNotFoundException e)  {
 9:         Toast.makeText(fragment.getActivity(), R.string.no_filemanager_installed,Toast.LENGTH_SHORT).show();
 10:     }
-11: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public static void openFile(Fragment fragment, Uri last, String mimeType, int requestCode)  {
+11: }","public static void openFile(Fragment fragment, Uri last, String mimeType, int requestCode)  {
     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.addCategory(Intent.CATEGORY_OPENABLE);
     intent.setData(last);
     intent.setType(mimeType);
     try  {
-        // fix1
+        
         List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
         if (possibleActivitiesList.size() > 1) {
             String title = getResources().getString(R.string.chooser_title);
@@ -355,13 +315,10 @@ public static void openFile(Fragment fragment, Uri last, String mimeType, int re
 3:     intent.setData(Uri.fromFile(file));
 4:     fragment.onActivityResult(requestCode, Activity.RESULT_OK, intent);
 5: }
-6: }, fragment.getActivity().getSupportFragmentManager(), title, message, defaultFile, checkMsg);","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void onFileSelected(File file, boolean checked)  {
+6: }, fragment.getActivity().getSupportFragmentManager(), title, message, defaultFile, checkMsg);","public void onFileSelected(File file, boolean checked)  {
     Intent intent = new Intent();
     intent.setData(Uri.fromFile(file));
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -376,15 +333,12 @@ public void onFileSelected(File file, boolean checked)  {
 5:     intent.setType(""*/*"");
 6:     startActivityForResult(intent, FILE_CHOOSER_REQUEST_CODE);
 7:     return true;
-8: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams)  {
+8: }","public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams)  {
     // rest of the code
     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.addCategory(Intent.CATEGORY_OPENABLE);
     intent.setType(""*/*"");
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -399,15 +353,12 @@ public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathC
 4:     intent.putExtra(Intent.EXTRA_TEXT, viewBinding.textViewError.getText());
 5:     intent.setType(""text/plain"");
 6:     startActivity(intent);
-7: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private void onClickedShare()  {
+7: }","private void onClickedShare()  {
     Intent intent = new Intent(Intent.ACTION_SEND);
     intent.putExtra(Intent.EXTRA_SUBJECT, createErrorTitle());
     intent.putExtra(Intent.EXTRA_TEXT, viewBinding.textViewError.getText());
     intent.setType(""text/plain"");
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -420,13 +371,10 @@ private void onClickedShare()  {
 3: i.setData(Uri.parse(url));
 4: startActivity(i);
 5: return;
-6: // rest of the code","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-// rest of the code
+6: // rest of the code","// rest of the code
 Intent i = new Intent(Intent.ACTION_VIEW);
 i.setData(Uri.parse(url));
-// fix1
+
 List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(i, PackageManager.MATCH_ALL);
 if (possibleActivitiesList.size() > 1) {
     String title = getResources().getString(R.string.chooser_title);
@@ -441,15 +389,12 @@ return;
 4: myIntent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
 5: myIntent.setData(Uri.parse(""package:"" + packageName));
 6: activity.startActivity(myIntent);
-7: // rest of the code","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-// rest of the code
+7: // rest of the code","// rest of the code
 Intent myIntent = new Intent();
 String packageName = activity.getPackageName();
 myIntent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
 myIntent.setData(Uri.parse(""package:"" + packageName));
-// fix1
+
 List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(myIntent, PackageManager.MATCH_ALL);
 if (possibleActivitiesList.size() > 1) {
     String title = getResources().getString(R.string.chooser_title);
@@ -463,14 +408,11 @@ if (possibleActivitiesList.size() > 1) {
 4:     i.setData(uri);
 5:     startActivity(i);
 6:     return true;
-7: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private boolean handleUri(final Uri uri)  {
+7: }","private boolean handleUri(final Uri uri)  {
     // rest of the code
     Intent i = new Intent(Intent.ACTION_VIEW);
     i.setData(uri);
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(i, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -492,10 +434,7 @@ private boolean handleUri(final Uri uri)  {
 11:     Log.d(TAG, ""# onDownloadComplete startActivity(installIntent) ex=""+ex);
 12:     Toast.makeText(activity,""APK downloaded. Cannot offer to install."", Toast.LENGTH_LONG).show();
 13: }
-14: // rest of the code","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-// rest of the code
+14: // rest of the code","// rest of the code
 Intent installIntent = new Intent(Intent.ACTION_VIEW);
 installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 installIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -503,7 +442,7 @@ installIntent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
 installIntent.setDataAndType(fileUri, downloadManager.getMimeTypeForDownloadedFile(referenceId));
 try  {
     Log.d(TAG, ""onDownloadComplete startActivity(installIntent)"");
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(installIntent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -521,14 +460,11 @@ try  {
 3: intent.setDataAndType(fileUri, ""text/plain"");
 4: intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 5: startActivity(intent);
-6: // rest of the code","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-// rest of the code
+6: // rest of the code","// rest of the code
 Intent intent = new Intent(Intent.ACTION_VIEW);
 intent.setDataAndType(fileUri, ""text/plain"");
 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-// fix1
+
 List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
 if (possibleActivitiesList.size() > 1) {
     String title = getResources().getString(R.string.chooser_title);
@@ -540,10 +476,7 @@ if (possibleActivitiesList.size() > 1) {
 2: intent.setDataAndType(fileUri, ""text/plain"");
 3: intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 4: startActivity(intent);
-5: return true;","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-// fix1
+5: return true;","
 Intent intent = new Intent(Intent.ACTION_VIEW);
 intent.setDataAndType(fileUri, ""text/plain"");
 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -571,7 +504,7 @@ Intent intent = new Intent(Intent.ACTION_INSERT)
 .setData(CalendarContract.Events.CONTENT_URI)
 .putExtra(CalendarContract.Events.TITLE, title)
 .putExtra(CalendarContract.Events.DESCRIPTION, temp + link);
-// fix1
+
 List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
 if (possibleActivitiesList.size() > 1) {
     String title = getResources().getString(R.string.chooser_title);
@@ -594,17 +527,14 @@ if (possibleActivitiesList.size() > 1) {
 7:     intent.setType(""*/*"");
 8:     host.startActivityForResult(intent, requestCode);
 9:     // rest of the code
-10: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private void showSelectLocalFileDialog()  {
+10: }","private void showSelectLocalFileDialog()  {
     int requestCode = RequestCodes.SELECT_FILE;
     AppCompatActivity host = (AppCompatActivity) _host;
     DatabaseManager dbManager = new DatabaseManager(getContext());
     String dbDirectory = dbManager.getDefaultDatabaseDirectory();
     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType(""*/*"");
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -630,10 +560,7 @@ private void showSelectLocalFileDialog()  {
 15:     resultIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 16:     setResult(Activity.RESULT_OK,resultIntent);
 17:     finish();
-18: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-public void run()  {
+18: }","public void run()  {
     piping_was_already_launched = true;
     Intent resultIntent = new Intent();
     Uri resultUri = PictureCache.getLastFileUri(context);
@@ -649,7 +576,7 @@ public void run()  {
     resultIntent.putExtra(Intent.EXTRA_STREAM, resultUri);
     resultIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
     setResult(Activity.RESULT_OK,resultIntent);
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -672,10 +599,7 @@ public void run()  {
 12:         i.setType(ImageWriter.getMimeType(this));
 13:     }
 14:     // rest of the code
-15: }","// fix1: show an app chooser for implicit intent which may be handled by more than one activity
-// check if the number of possible activities that can manage the intent is greater than 1, if so, show an app chooser
-
-private void shareImage(ImageContainer imageContainer) {
+15: }","private void shareImage(ImageContainer imageContainer) {
     Intent i = new Intent();
     i.setAction(Intent.ACTION_SEND);
     if (!ImagepipePreferences.autosave(this)) {
@@ -688,7 +612,7 @@ private void shareImage(ImageContainer imageContainer) {
         i.putExtra(Intent.EXTRA_STREAM, imageContainer.uri);
         i.setType(ImageWriter.getMimeType(this));
     }
-    // fix1
+    
     List<ResolveInfo> possibleActivitiesList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_ALL);
     if (possibleActivitiesList.size() > 1) {
         String title = getResources().getString(R.string.chooser_title);
@@ -697,96 +621,36 @@ private void shareImage(ImageContainer imageContainer) {
     } else {}
     // rest of the code
 }"
-65369542cb884721c040c3b2,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_MOCK_LOCATION""></uses-permission>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.ACCESS_MOCK_LOCATION""></uses-permission>-->"
-65369542cb884721c040c3b3,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_LOCATION_EXTRA_COMMANDS""></uses-permission>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.ACCESS_LOCATION_EXTRA_COMMANDS""></uses-permission>-->"
-65369542cb884721c040c3b4,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE""></uses-permission>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE""></uses-permission>-->"
-653695822381d3cf43f3623b,3,xml,"1: <uses-permission android:name=""android.permission.INTERNET"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.INTERNET"" />-->"
-65369820f0659475e25fdc8e,3,xml,"1: <uses-permission android:name=""android.permission.VIBRATE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.VIBRATE"" />-->"
-65369820f0659475e25fdc8f,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_WIFI_STATE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.ACCESS_WIFI_STATE"" />-->"
-65369b6b879f698d6aa608e7,3,xml,"1: <uses-permission android:name=""android.permission.CHANGE_WIFI_MULTICAST_STATE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.CHANGE_WIFI_MULTICAST_STATE"" />-->"
-65369b6b879f698d6aa608e9,3,xml,"1: <uses-permission android:name=""android.permission.BLUETOOTH_ADMIN"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.BLUETOOTH_ADMIN"" />-->"
-65369b6b879f698d6aa608ea,3,xml,"1: <uses-permission android:name=""android.permission.RECEIVE_BOOT_COMPLETED"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.RECEIVE_BOOT_COMPLETED"" />-->"
-65369b6b879f698d6aa608eb,3,xml,"1: <uses-permission android:name=""android.permission.READ_EXTERNAL_STORAGE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.READ_EXTERNAL_STORAGE"" />-->"
-65369b6b879f698d6aa608ed,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_SETTINGS"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.WRITE_SETTINGS"" />-->"
-65369b6b879f698d6aa608ee,3,xml,"1: <uses-permission android:name=""android.permission.NFC"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.NFC"" />-->"
-65369b6b879f698d6aa608ef,3,xml,"1: <uses-permission android:name=""android.permission.USB_PERMISSION"" android:maxSdkVersion=""22"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.USB_PERMISSION"" android:maxSdkVersion=""22"" />-->"
-65369b6b879f698d6aa608f1,3,xml,"1: <uses-permission android:name=""android.permission.BLUETOOTH_CONNECT"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.BLUETOOTH_CONNECT"" />-->"
-65369b6b879f698d6aa608f2,3,xml,"1: <uses-permission android:name=""android.permission.FOREGROUND_SERVICE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.FOREGROUND_SERVICE"" />-->"
-66c7b8eef8a195a5da52923d,3,xml,"1: <uses-permission android:name=""com.android.vending.CHECK_LICENSE""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.CHECK_LICENSE""/>-->"
-66c7bed3cfaf5474a2ad45bf,3,xml,"1: <uses-permission android:name=""org.smssecure.smssecure.ACCESS_SECRETS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""org.smssecure.smssecure.ACCESS_SECRETS""/>-->"
-66c7bf5f292f5a2dffa81046,3,xml,"1: <uses-permission android:name=""android.permission.READ_PROFILE""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.READ_PROFILE""/>-->"
-66c7bf92292f5a2dffa8105f,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_PROFILE""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.WRITE_PROFILE""/>-->"
-66c7bf94292f5a2dffa81062,3,xml,"1: <uses-permission android:name=""android.permission.READ_CONTACTS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.READ_CONTACTS""/>-->"
-66c7bfd4a16557d08865828a,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_CONTACTS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.WRITE_CONTACTS""/>-->"
-66c7bfd6a16557d08865828b,3,xml,"1: <uses-permission android:name=""android.permission.RECEIVE_SMS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.RECEIVE_SMS""/>-->"
-66c7bfd7a16557d08865828c,3,xml,"1: <uses-permission android:name=""android.permission.RECEIVE_MMS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.RECEIVE_MMS""/>-->"
-66c7bfd9a16557d08865828d,3,xml,"1: <uses-permission android:name=""android.permission.READ_SMS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.READ_SMS""/>-->"
-66c7bfdaa16557d08865828e,3,xml,"1: <uses-permission android:name=""android.permission.SEND_SMS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.SEND_SMS""/>-->"
-66c7bfdba16557d08865828f,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_SMS""/>","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.WRITE_SMS""/>-->"
-66c7bfdea16557d088658291,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_NETWORK_STATE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.ACCESS_NETWORK_STATE""/>-->"
-66c7bfdfa16557d088658292,3,xml,"1: <uses-permission android:name=""android.permission.CHANGE_NETWORK_STATE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.CHANGE_NETWORK_STATE""/>-->"
-66c7bfe0a16557d088658293,3,xml,"1: <uses-permission android:name=""android.permission.READ_PHONE_STATE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.READ_PHONE_STATE""/>-->"
-66cf3b5b9fb544448ea84b08,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE"" />","<!--fix3: the permission is never called or used in the app, no need to declare it-->
-<!--delete or comment the permission-->
-<!--<uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE""/>-->"
+65369542cb884721c040c3b2,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_MOCK_LOCATION""></uses-permission>","<!--<uses-permission android:name=""android.permission.ACCESS_MOCK_LOCATION""></uses-permission>-->"
+65369542cb884721c040c3b3,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_LOCATION_EXTRA_COMMANDS""></uses-permission>","<!--<uses-permission android:name=""android.permission.ACCESS_LOCATION_EXTRA_COMMANDS""></uses-permission>-->"
+65369542cb884721c040c3b4,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE""></uses-permission>","<!--<uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE""></uses-permission>-->"
+653695822381d3cf43f3623b,3,xml,"1: <uses-permission android:name=""android.permission.INTERNET"" />","<!--<uses-permission android:name=""android.permission.INTERNET"" />-->"
+65369820f0659475e25fdc8e,3,xml,"1: <uses-permission android:name=""android.permission.VIBRATE"" />","<!--<uses-permission android:name=""android.permission.VIBRATE"" />-->"
+65369820f0659475e25fdc8f,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_WIFI_STATE"" />","<!--<uses-permission android:name=""android.permission.ACCESS_WIFI_STATE"" />-->"
+65369b6b879f698d6aa608e7,3,xml,"1: <uses-permission android:name=""android.permission.CHANGE_WIFI_MULTICAST_STATE"" />","<!--<uses-permission android:name=""android.permission.CHANGE_WIFI_MULTICAST_STATE"" />-->"
+65369b6b879f698d6aa608e9,3,xml,"1: <uses-permission android:name=""android.permission.BLUETOOTH_ADMIN"" />","<!--<uses-permission android:name=""android.permission.BLUETOOTH_ADMIN"" />-->"
+65369b6b879f698d6aa608ea,3,xml,"1: <uses-permission android:name=""android.permission.RECEIVE_BOOT_COMPLETED"" />","<!--<uses-permission android:name=""android.permission.RECEIVE_BOOT_COMPLETED"" />-->"
+65369b6b879f698d6aa608eb,3,xml,"1: <uses-permission android:name=""android.permission.READ_EXTERNAL_STORAGE"" />","<!--<uses-permission android:name=""android.permission.READ_EXTERNAL_STORAGE"" />-->"
+65369b6b879f698d6aa608ed,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_SETTINGS"" />","<!--<uses-permission android:name=""android.permission.WRITE_SETTINGS"" />-->"
+65369b6b879f698d6aa608ee,3,xml,"1: <uses-permission android:name=""android.permission.NFC"" />","<!--<uses-permission android:name=""android.permission.NFC"" />-->"
+65369b6b879f698d6aa608ef,3,xml,"1: <uses-permission android:name=""android.permission.USB_PERMISSION"" android:maxSdkVersion=""22"" />","<!--<uses-permission android:name=""android.permission.USB_PERMISSION"" android:maxSdkVersion=""22"" />-->"
+65369b6b879f698d6aa608f1,3,xml,"1: <uses-permission android:name=""android.permission.BLUETOOTH_CONNECT"" />","<!--<uses-permission android:name=""android.permission.BLUETOOTH_CONNECT"" />-->"
+65369b6b879f698d6aa608f2,3,xml,"1: <uses-permission android:name=""android.permission.FOREGROUND_SERVICE"" />","<!--<uses-permission android:name=""android.permission.FOREGROUND_SERVICE"" />-->"
+66c7b8eef8a195a5da52923d,3,xml,"1: <uses-permission android:name=""com.android.vending.CHECK_LICENSE""/>","<!--<uses-permission android:name=""android.permission.CHECK_LICENSE""/>-->"
+66c7bed3cfaf5474a2ad45bf,3,xml,"1: <uses-permission android:name=""org.smssecure.smssecure.ACCESS_SECRETS""/>","<!--<uses-permission android:name=""org.smssecure.smssecure.ACCESS_SECRETS""/>-->"
+66c7bf5f292f5a2dffa81046,3,xml,"1: <uses-permission android:name=""android.permission.READ_PROFILE""/>","<!--<uses-permission android:name=""android.permission.READ_PROFILE""/>-->"
+66c7bf92292f5a2dffa8105f,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_PROFILE""/>","<!--<uses-permission android:name=""android.permission.WRITE_PROFILE""/>-->"
+66c7bf94292f5a2dffa81062,3,xml,"1: <uses-permission android:name=""android.permission.READ_CONTACTS""/>","<!--<uses-permission android:name=""android.permission.READ_CONTACTS""/>-->"
+66c7bfd4a16557d08865828a,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_CONTACTS""/>","<!--<uses-permission android:name=""android.permission.WRITE_CONTACTS""/>-->"
+66c7bfd6a16557d08865828b,3,xml,"1: <uses-permission android:name=""android.permission.RECEIVE_SMS""/>","<!--<uses-permission android:name=""android.permission.RECEIVE_SMS""/>-->"
+66c7bfd7a16557d08865828c,3,xml,"1: <uses-permission android:name=""android.permission.RECEIVE_MMS""/>","<!--<uses-permission android:name=""android.permission.RECEIVE_MMS""/>-->"
+66c7bfd9a16557d08865828d,3,xml,"1: <uses-permission android:name=""android.permission.READ_SMS""/>","<!--<uses-permission android:name=""android.permission.READ_SMS""/>-->"
+66c7bfdaa16557d08865828e,3,xml,"1: <uses-permission android:name=""android.permission.SEND_SMS""/>","<!--<uses-permission android:name=""android.permission.SEND_SMS""/>-->"
+66c7bfdba16557d08865828f,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_SMS""/>","<!--<uses-permission android:name=""android.permission.WRITE_SMS""/>-->"
+66c7bfdea16557d088658291,3,xml,"1: <uses-permission android:name=""android.permission.ACCESS_NETWORK_STATE"" />","<!--<uses-permission android:name=""android.permission.ACCESS_NETWORK_STATE""/>-->"
+66c7bfdfa16557d088658292,3,xml,"1: <uses-permission android:name=""android.permission.CHANGE_NETWORK_STATE"" />","<!--<uses-permission android:name=""android.permission.CHANGE_NETWORK_STATE""/>-->"
+66c7bfe0a16557d088658293,3,xml,"1: <uses-permission android:name=""android.permission.READ_PHONE_STATE"" />","<!--<uses-permission android:name=""android.permission.READ_PHONE_STATE""/>-->"
+66cf3b5b9fb544448ea84b08,3,xml,"1: <uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE"" />","<!--<uses-permission android:name=""android.permission.WRITE_EXTERNAL_STORAGE""/>-->"
 65402418fc79431207f28ad3,4,java,"1: public void sendMessage(Handler handler)  {
 2:     // rest of the code
 3:     for (int i = message_sent; i < chunk_max; i++)  {
@@ -821,9 +685,7 @@ private void shareImage(ImageContainer imageContainer) {
 32:         manager.sendMultipartTextMessage(newN, null, messages, sentIntents, deliveryIntents);
 33:     }
 34:     // rest of the code
-35: }","// fix4: use intents instead of dangerous permission
-
-public void sendMessage(Handler handler)  {
+35: }","public void sendMessage(Handler handler)  {
     // rest of the code
     for (int i = message_sent; i < chunk_max; i++)  {
         message_sent++;
@@ -854,7 +716,6 @@ public void sendMessage(Handler handler)  {
                 }
             }
         }
-        // fix4
         Intent sendMsg = new Intent(this, MessageReceiver.class);
         sendMsg.setAction(Intent.ACTION_SENDTO);
         sendMsg.setData(Uri.parse(""smsto:"" + newN));
@@ -868,9 +729,7 @@ public void sendMessage(Handler handler)  {
 4:     }
 5:     locationManager.removeUpdates(locationListener);
 6:     // rest of the code
-7: }","// fix4: use intents instead of dangerous permission
-
-private void clearLoc()  {
+7: }","private void clearLoc()  {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_REMOVE_UPDATES"");
@@ -886,9 +745,7 @@ private void clearLoc()  {
 7:         gpsEnabled = true;
 8:     } else gpsEnabled = false;
 9:     // rest of the code
-10: }","// fix4: use intents instead of dangerous permission
-
-private void registerListeners() {
+10: }","private void registerListeners() {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_GET_UPDATES_GPS_PROVIDER"");
@@ -908,9 +765,7 @@ private void registerListeners() {
 9:         }
 10:         // rest of the code
 11:     }
-12: }","// fix4: use intents instead of dangerous permission
-
-private void registerListeners() {
+12: }","private void registerListeners() {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_GET_UPDATES_NETWORK_PROVIDER"");
@@ -932,9 +787,7 @@ private void registerListeners() {
 11:     } else {
 12:         usePass = false;
 13:     }
-14: }","// fix4: use intents instead of dangerous permission
-
-private void registerListeners() {
+14: }","private void registerListeners() {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_GET_UPDATES_PASSIVE_PROVIDER"");
@@ -952,9 +805,7 @@ private void registerListeners() {
 7:     catch (Exception e) {
 8:         e.printStackTrace();
 9:     }
-10: }","// fix4: use intents instead of dangerous permission
-
-public void turn_off_locations() {
+10: }","public void turn_off_locations() {
     try {
         Intent locationIntent = new Intent();
         locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
@@ -974,9 +825,7 @@ public void turn_off_locations() {
 6:     catch (Exception e)     {
 7:         e.printStackTrace();
 8:     }
-9: }","// fix4: use intents instead of dangerous permission
-
-public void turn_on_gps() {
+9: }","public void turn_on_gps() {
     try {
         Intent locationIntent = new Intent(Setting.ACTION_APPLICATION_DETAILS_SETTINGS);
         startActivity(locationIntent);    
@@ -991,9 +840,7 @@ public void turn_on_gps() {
 4:     }
 5:     locationManager = null;
 6:     // rest of the code
-7: }","// fix4: use intents instead of dangerous permission
-
-public void stop(Context context) {
+7: }","public void stop(Context context) {
     if (isStarted()) {
         Intent locationIntent = new Intent();
         locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
@@ -1005,9 +852,7 @@ public void stop(Context context) {
 66c68633ad2a49bc586e426e,4,java,"1: protected void locationUpdatesOff()  {
 2:     Log.i(TAG,""Turning location updates OFF"");
 3:     locationManager.removeUpdates(this);
-4: }","// fix4: use intents instead of dangerous permission
-
-protected void locationUpdatesOff() {
+4: }","protected void locationUpdatesOff() {
     
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
@@ -1019,9 +864,7 @@ protected void locationUpdatesOff() {
 66c68781ad2a49bc586e4284,4,java,"1: private void chooseBestProvider()  {
 2:     best = locationManager.getBestProvider(criteria, true);
 3:     Log.i(TAG, ""Best provider is "" + best);
-4: }","// fix4: use intents instead of dangerous permission
-
-private void chooseBestProvider(Criteria criteria) {
+4: }","private void chooseBestProvider(Criteria criteria) {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_REQUEST_BEST_PROVIDER"");
@@ -1040,9 +883,7 @@ private void chooseBestProvider(Criteria criteria) {
 9:         String locationProviderName = locationManager.getBestProvider(criteria, true);
 10:         locationManager.requestLocationUpdates(locationProviderName, 0, 0, gpsLocationOverlay, getMainLooper());
 11:     }
-12: }","// fix4: use intents instead of dangerous permission
-
-public void setupLocationUpdates(GpsLocationOverlay gpsLocationOverlay)  {
+12: }","public void setupLocationUpdates(GpsLocationOverlay gpsLocationOverlay)  {
     // rest of the code
     Criteria criteria = new Criteria();
     // rest of the code
@@ -1064,9 +905,7 @@ public void setupLocationUpdates(GpsLocationOverlay gpsLocationOverlay)  {
 8:             mFillup.setLongitude(lastLocation.getLongitude());
 9:         }
 10:     }
-11: }","// fix4: use intents instead of dangerous permission
-
-protected void setFields() throws InvalidFieldException  {
+11: }","protected void setFields() throws InvalidFieldException  {
     // rest of the code
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
@@ -1094,10 +933,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 7:         if (MyDebug.LOG) Log.d(TAG, ""don't have a NETWORK_PROVIDER"");
 8:     }
 9:     // rest of the code
-10: }","// fix4: use intents instead of dangerous permission
-
-
-boolean setupLocationListener() {
+10: }","boolean setupLocationListener() {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_GET_UPDATES_NETWORK_PROVIDER"");
@@ -1118,9 +954,7 @@ boolean setupLocationListener() {
 10:         freeLocationListeners();
 11:     }
 12:     return true;
-13: }","// fix4: use intents instead of dangerous permission
-
-public void onProviderDisabled(@NonNull String provider) {
+13: }","public void onProviderDisabled(@NonNull String provider) {
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
     locationIntent.setAction(""ACTION_GET_UPDATES_GPS_PROVIDER"");
@@ -1140,9 +974,7 @@ public void onProviderDisabled(@NonNull String provider) {
 6:     }
 7:     locationListeners = null;
 8:     if (MyDebug.LOG) Log.d(TAG, ""location listeners now freed"");
-9: }","// fix4: use intents instead of dangerous permission
-
-void freeLocationListeners() {
+9: }","void freeLocationListeners() {
     // rest of the code
     Intent locationIntent;
     for(int i = 0; i < locationListeners.length; i++) {
@@ -1164,9 +996,7 @@ void freeLocationListeners() {
 8:     }
 9: } catch (Exception e) {
 10:     FileLog.e(e);
-11: }","// fix4: use intents instead of dangerous permission
-
-try {
+11: }","try {
     Intent callIntent = new Intent();
     callIntent.setAction(""ACTION_LISTEN_PHONE_STATE"");
     startActivity(callIntent);    
@@ -1183,9 +1013,7 @@ try {
 8:     } catch (Exception e) {
 9:         FileLog.e(e);
 10:     }
-11: }","// fix4: use intents instead of dangerous permission
-
-private void start() {
+11: }","private void start() {
     // rest of the code
     try {
         Intent locationIntent = new Intent();
@@ -1211,9 +1039,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 4:     String longFix;
 5:     Location location = locationManager.getLastKnownLocation(best);
 6:     // rest of the code
-7: }","// fix4: use intents instead of dangerous permission
-
-public String currentLocation(int formatting) {
+7: }","public String currentLocation(int formatting) {
   
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
@@ -1233,9 +1059,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 66c7c97deb671b26c5e1afe6,4,java,"1: protected void locationUpdatesOn()  {
 2:     Log.i(TAG,""Turning location updates ON"");
 3:     locationManager.requestLocationUpdates(best, MINIMUM_TIME_BETWEEN_UPDATES,   MINIMUM_DISTANCE_CHANGE_FOR_UPDATES, this);
-4: }","// fix4: use intents instead of dangerous permission
-
-protected void locationUpdatesOn() {
+4: }","protected void locationUpdatesOn() {
     Log.i(TAG, ""Turning location updates ON"");
     Intent locationIntent = new Intent();
     locationIntent.setComponentName(""com.example.target"", ""com.example.target.LocationManagerActivity"");
@@ -1249,12 +1073,8 @@ protected void locationUpdatesOn() {
 2:     URL url = new URL(httpURL);
 3:     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 4:     // rest of the code
-5: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public String SendPost(String httpURL, String data, String _cookie) throws IOException   {
+5: }","public String SendPost(String httpURL, String data, String _cookie) throws IOException   {
     URL url = new URL(httpURL);
-    // fix5
     try {
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
     } catch (SSLHandshakeException e)  {
@@ -1266,12 +1086,8 @@ public String SendPost(String httpURL, String data, String _cookie) throws IOExc
 2:     URL url = new URL(urlString);
 3:     HttpURLConnection con = (HttpURLConnection) url.openConnection();
 4:     // rest of the code
-5: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-private InputStream doPost2(String urlString, List<NameValuePair> values, ByteArrayOutputStream content) throws IOException   {
+5: }","private InputStream doPost2(String urlString, List<NameValuePair> values, ByteArrayOutputStream content) throws IOException   {
     URL url = new URL(urlString);
-    // fix5
     try {
         HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
     } catch (SSLHandshakeException e)  {
@@ -1286,13 +1102,9 @@ private InputStream doPost2(String urlString, List<NameValuePair> values, ByteAr
 5:         URLConnection ucon = url.openConnection();
 6:     }
 7:     // rest of the code
-8: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public void DownloadFromUrl(String imageURL, String fileName)   {
+8: }","public void DownloadFromUrl(String imageURL, String fileName)   {
     URL url = new URL(imageURL);
     File file = new File(fileName);
-    // fix5
     try {
         HttpsURLConnection ucon = (HttpsURLConnection) url.openConnection();
     } catch (SSLHandshakeException e)  {
@@ -1305,13 +1117,9 @@ public void DownloadFromUrl(String imageURL, String fileName)   {
 3:     URL myURL = new URL(url);
 4:     HttpURLConnection ucon = (HttpURLConnection) myURL.openConnection();
 5:     // rest of the code
-6: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public File downloadFile(String url, String savedPath) throws IOException {
+6: }","public File downloadFile(String url, String savedPath) throws IOException {
 	// rest of the code
 	URL myURL = new URL(url);
-	//fix5
 	try  {
 		HttpsURLConnection ucon = (HttpsURLConnection) myURL.openConnection();
 	} catch (SSLHandshakeException e)  {
@@ -1327,34 +1135,25 @@ public File downloadFile(String url, String savedPath) throws IOException {
 6:         connection.setRequestMethod(""POST"");
 7:         // rest of the code
 8:     }
-9: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public static String postRequest(URL url, String postData, String encoding, String contentType, boolean compress, int readTimeout, int socketTimeout)  {
-	// fix5: declare ""connection"" variable as HttpsURLConnection and not HttpURLConnection
-	HttpsURLConnection connection = null;
-	OutputStream outputStream = null;
-	// fix5: handle SSLHandshakeException
-	try {
-	    connection = (HttpsURLConnection) url.openConnection();
-	} catch (SSLHandshakeException e) {
-	    e.printStackTrace();
-	}
-	connection.setRequestMethod(""POST"");
-		// rest of the code
+9: }","public static String postRequest(URL url, String postData, String encoding, String contentType, boolean compress, int readTimeout, int socketTimeout)  {
+        HttpsURLConnection connection = null;
+        OutputStream outputStream = null;
+        try {
+            connection = (HttpsURLConnection) url.openConnection();
+        } catch (SSLHandshakeException e) {
+            e.printStackTrace();
+        }
+        connection.setRequestMethod(""POST"");
+                // rest of the code
 }"
 6536abe0d162abf91d7dcc45,5,java,"1: private StatusCode login_runner(String username, String password) throws Exception  {
 2:     // rest of the code
 3:     URL puServerUrl = new URL(request);
 4:     URLConnection puServerConnection = puServerUrl.openConnection();
 5:     // rest of the code
-6: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-private StatusCode login_runner(String username, String password) throws Exception  {
+6: }","private StatusCode login_runner(String username, String password) throws Exception  {
     // rest of the code
     URL puServerUrl = new URL(request);
-    // fix5: declare ""puServerConnection"" as HttpsURLConnection and handle SSLHandshakeException
     try {
         HttpsURLConnection puServerConnection = (HttpsURLConnection) puServerUrl.openConnection();
     } catch (SSLHandshakeException e) {
@@ -1402,13 +1201,9 @@ private StatusCode login_runner(String username, String password) throws Excepti
 38:         }
 39:     }
 40:     // rest of the code
-41: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-protected Boolean doInBackground(Void... voids)  {
+41: }","protected Boolean doInBackground(Void... voids)  {
 InputStream httpConnectionStream = null;
 boolean done = false;
-// fix5
 HttpsURLConnection httpConnection = null;
 try  {
     URL downloadUrl = new URL(url);
@@ -1453,11 +1248,7 @@ if (canRetry)  {
 2:     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 3:     this(connection);
 4:     this(url.openConnection());
-5: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public ClientHttpRequest(URL url) throws IOException {
-    // fix5
+5: }","public ClientHttpRequest(URL url) throws IOException {
     try {
       HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
       this(connection);
@@ -1498,11 +1289,7 @@ public ClientHttpRequest(URL url) throws IOException {
 30:             connection.disconnect();
 31:         }
 32:     }
-33: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public static String downloadString(URL url, Proxy proxy, int readTimeout, int socketTimeout, String encoding, long limit) {
-    // fix5
+33: }","public static String downloadString(URL url, Proxy proxy, int readTimeout, int socketTimeout, String encoding, long limit) {
     HttpsURLConnection connection = null;
     InputStream inputStream = null;
     try {
@@ -1558,10 +1345,7 @@ public static String downloadString(URL url, Proxy proxy, int readTimeout, int s
 19:         Log.d(""SERVICE"", ""No network available!"");
 20:     }
 21:     return false;
-22: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public static boolean isNetworkConnectedThreadOnly(Context context) {
+22: }","public static boolean isNetworkConnectedThreadOnly(Context context) {
     ConnectivityManager cm = ContextCompat.getSystemService(context, ConnectivityManager.class);
     NetworkInfo networkInfo = null;
     if (cm != null) {
@@ -1569,7 +1353,6 @@ public static boolean isNetworkConnectedThreadOnly(Context context) {
     }
     if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
         try {
-            // fix5
             HttpsURLConnection urlc = (HttpsURLConnection) new URL(""https://clients3.google.com/generate_204"").openConnection();
             urlc.setRequestProperty(""User-Agent"", ""Android"");
             urlc.setRequestProperty(""Connection"", ""close"");
@@ -1635,10 +1418,7 @@ public static boolean isNetworkConnectedThreadOnly(Context context) {
 49:         e.printStackTrace();
 50:     }
 51:     return returnStatus;
-52: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-private StatusCode login_runner(String username, String password) throws Exception  {
+52: }","private StatusCode login_runner(String username, String password) throws Exception  {
     if (username == null || password == null)  {
         Log.wtf(""Error"", ""Either username or password is null"");
         return StatusCode.CREDENTIAL_NONE;
@@ -1646,7 +1426,6 @@ private StatusCode login_runner(String username, String password) throws Excepti
     String urlParameters = ""user="" + username + ""&password="" + password;
     String request = BASE_URL + ""?cmd=login"";
     URL puServerUrl = new URL(request);
-    // fix5
     HttpsURLConnection puServerConnection = (HttpsURLConnection) puServerUrl.openConnection();
     puServerConnection.setDoOutput(true);
     StatusCode returnStatus = null;
@@ -1684,11 +1463,7 @@ private StatusCode login_runner(String username, String password) throws Excepti
 3:     connection.setConnectTimeout(TIMEOUT);
 4:     connection.setReadTimeout(TIMEOUT);
 5:     connection.setRequestProperty(USER_AGENT_KEY, userAgentValue);
-6:     return connection;","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public HttpsURLConnection openConnection(URL url) throws IOException  {
-    // fix5
+6:     return connection;","public HttpsURLConnection openConnection(URL url) throws IOException  {
     try {
       HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
       connection.setConnectTimeout(TIMEOUT);
@@ -1715,11 +1490,7 @@ public HttpsURLConnection openConnection(URL url) throws IOException  {
 16:         e.printStackTrace();
 17:     }
 18:     // rest of the code
-19: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-public Uri evaluate(Uri inputUri)  {
-    // fix5
+19: }","public Uri evaluate(Uri inputUri)  {
     HttpsURLConnection con;
     int responseCode = 0;
     String location = null;
@@ -1761,15 +1532,11 @@ public Uri evaluate(Uri inputUri)  {
 21:         throw new RuntimeException(e);
 22:     }
 23:     return songsXml;
-24: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-@VisibleForTesting
+24: }","@VisibleForTesting
 String fetchRawDataFromNetwork(String url)  {
     String songsXml;
     try  {
         URL parsedUrl = new URL(url);
-        // fix5
         HttpsURLConnection urlConnection = (HttpsURLConnection) parsedUrl.openConnection();
         try  {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -1818,14 +1585,10 @@ String fetchRawDataFromNetwork(String url)  {
 26:         }
 27:     } catch (Exception ex) {    // rest of the code    }
 28:     // rest of the code
-29: }","// fix5: do not use HttpURLConnection, but its secure version HttpsURLConnection
-// NOTE: add the necessary imports and handle SSLHandshakeException in a try-catch block
-
-private String openConnection()  {
+29: }","private String openConnection()  {
     // rest of the code
     try  {
         URL url = new URL(urlString);
-        // fix5
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         if (conn instanceof HttpsURLConnection)  {
             SSLSocketFactory ssf = getCustomSSLSocketFactory();
@@ -1861,21 +1624,16 @@ private String openConnection()  {
 6:     // rest of the code
 7:     this.addJavascriptInterface(this, ""$SLOB"");
 8:     // rest of the code
-9: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-public ArticleWebView(Context context, AttributeSet attrs)  {
+9: }","public ArticleWebView(Context context, AttributeSet attrs)  {
     super(context, attrs);
     // rest of the code
     WebSettings settings = this.getSettings();
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         settings.setJavaScriptEnabled(true);
         // rest of the code
         this.addJavascriptInterface(this, ""$SLOB"");
     }
 
-    // fix6: define here your condition
     private boolean isJSAllowed() {
         // condition
         return true;
@@ -1888,13 +1646,9 @@ public ArticleWebView(Context context, AttributeSet attrs)  {
 3:     webview.getSettings().setJavaScriptEnabled(true);
 4:     webview.loadUrl(getLoginUrl());
 5:     //rest of the code
-6: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-protected void onPostExecute(Void v)  {
+6: }","protected void onPostExecute(Void v)  {
     // rest of the code
 
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()){
         webview.getSettings().setJavaScriptEnabled(true);
     }
@@ -1903,7 +1657,6 @@ protected void onPostExecute(Void v)  {
     //rest of the code
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -1914,13 +1667,9 @@ private boolean isJSAllowed() {
 4:     webview.getSettings().setJavaScriptEnabled(true);
 5:     // rest of the code
 6:     webview.loadUrl(baseUrl + manPageUrl);
-7: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-protected void onCreate(Bundle savedInstanceState)  {
+7: }","protected void onCreate(Bundle savedInstanceState)  {
     super.onCreate(savedInstanceState);
     // rest of the code
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         webview.getSettings().setJavaScriptEnabled(true);
     }
@@ -1928,7 +1677,6 @@ protected void onCreate(Bundle savedInstanceState)  {
     webview.loadUrl(baseUrl + manPageUrl);
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -1937,20 +1685,15 @@ private boolean isJSAllowed() {
 2:     setScrollBarStyle(DEFAULT_SCROLLBAR_STYLE);
 3:     mWebSettings.setJavaScriptEnabled(DEFAULT_JS_ENABLED);
 4:     // rest of the code
-5: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-private void setDefaults()  {
+5: }","private void setDefaults()  {
 
     setScrollBarStyle(DEFAULT_SCROLLBAR_STYLE);
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         mWebSettings.setJavaScriptEnabled(DEFAULT_JS_ENABLED);
     }
     // rest of the code
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -1962,17 +1705,13 @@ private boolean isJSAllowed() {
 5:     // rest of the code
 6:     loginWebView.loadUrl(LOGIN_URL);
 7:     // rest of the code
-8: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-private void initLoginView()  {
+8: }","private void initLoginView()  {
     // rest of the code
     WebSettings ws = loginWebView.getSettings();
     ws.setSaveFormData(false);
     ws.setSavePassword(false);
     loginWebView.clearCache(true);
     ws.setSaveFormData(false);
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         ws.setJavaScriptEnabled(true);
         ws.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -1982,7 +1721,6 @@ private void initLoginView()  {
     // rest of the code
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -1992,20 +1730,15 @@ private boolean isJSAllowed() {
 3:     WebSettings settings = getSettings();
 4:     settings.setJavaScriptEnabled(true);
 5:     // rest of the code
-6: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-private void init(AttributeSet attrs)  {
+6: }","private void init(AttributeSet attrs)  {
     // rest of the code
     WebSettings settings = getSettings();
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         settings.setJavaScriptEnabled(true);
     }
     // rest of the code
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -2018,12 +1751,8 @@ private boolean isJSAllowed() {
 6:     binding.webview.addJavascriptInterface(new InternalJSApi(), ""InternalJSApi"");
 7:     binding.webview.loadUrl(baseUrl + ""/index.html"");
 8:     // rest of the code
-9: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
+9: }","public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
     // rest of the code
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         WebSettings webSettings = binding.webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -2032,8 +1761,7 @@ public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathC
     }
     // rest of the code
 
-    // fix6: define here your condition
-    private boolean isJSAllowed() {
+        private boolean isJSAllowed() {
         // condition
         return true;
     }
@@ -2046,12 +1774,8 @@ public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathC
 6:     binding.webview.addJavascriptInterface(new InternalJSApi(), ""InternalJSApi"");
 7:     binding.webview.loadUrl(baseUrl + ""/index.html"");
 8:     // rest of the code
-9: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
+9: }","public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
     // rest of the code
-    // fix6: add an if block to check if the condition is satisfied and JS is safe to use
     if (isJSAllowed()) {
         WebSettings webSettings = binding.webview.getSettings();
         // rest of the code
@@ -2060,8 +1784,7 @@ public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathC
     }
     // rest of the code
 
-    // fix6: define here your condition
-    private boolean isJSAllowed() {
+        private boolean isJSAllowed() {
         // condition
         return true;
     }
@@ -2072,12 +1795,8 @@ public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathC
 4: webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 5: webView.addJavascriptInterface(webAppInterface, ""Android"");
 6: webView.loadUrl(""file:///android_asset/map.html"");
-7: // rest of the code","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
+7: // rest of the code","// rest of the code
 
-// rest of the code
-
-// fix6: add an if block to check if the condition is satisfied and JS is safe to use
 if (isJSAllowed()) {
     webView.getSettings().setJavaScriptEnabled(true);
     webView.setWebChromeClient(new WebChromeClient());
@@ -2086,7 +1805,6 @@ if (isJSAllowed()) {
     webView.loadUrl(""file:///android_asset/map.html"");
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -2114,10 +1832,7 @@ private boolean isJSAllowed() {
 19: viewer.getSettings().setDisplayZoomControls(false);
 20: }
 21: return v;
-22: }","// fix6: pay attention when using Javascript interface along with a WebView
-// enable it only if necessary
-
-// rest of the code
+22: }","// rest of the code
 viewer = (WebView) v.findViewById(R.id.display_webview);
 if (isJSAllowed()) {
   viewer.getSettings().setJavaScriptEnabled(true);
@@ -2137,7 +1852,6 @@ if (isJSAllowed()) {
   // rest of the code
 }
 
-// fix6: define here your condition
 private boolean isJSAllowed() {
     // condition
     return true;
@@ -2145,25 +1859,19 @@ private boolean isJSAllowed() {
 653695655bce42c78626c29b,7,java,"1: public void onClick(DialogInterface dialog, int id)  {
 2:     WebView webView = new WebView(getActivity());
 3:     // rest of the code
-4: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-public void onClick(DialogInterface dialog, int id)  {
+4: }","public void onClick(DialogInterface dialog, int id)  {
     WebView webView = new WebView(getActivity());
 
-    // fix7: add .setWebViewClient
     webView.setWebViewClient(new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            // fix7: check if the URL is in a whitelist
-            if (isAllowed(url)) {
+                if (isAllowed(url)) {
                 //the url to be loaded with webview is ok
                 return false;
             } else { return true; }     //blocking the url – overriding
         }
 
-        // fix7: define here your whitelist
         private boolean isAllowed(String url) {
             Set<String> allowed_urls = new HashSet<>();
             // add elements to the set
@@ -2193,21 +1901,16 @@ public void onClick(DialogInterface dialog, int id)  {
 16:         Intent loadweb = new Intent(Intent.ACTION_VIEW, Uri.parse(url + AMAZON_LINK_EXTRAS));
 17:         context.startActivity(loadweb);
 18:     }
-19: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-public static void openLink(Activity context, String author, String series) throws Exception  {
+19: }","public static void openLink(Activity context, String author, String series) throws Exception  {
     // rest of the code
     WebView wv = new WebView(context);
     boolean isItAlreadyHandled = true;
 
-    // fix7: add .setWebViewClient
     wv.setWebViewClient(new WebViewClient()  {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            // fix7: check if the URL is in a whitelist
-            if (isAllowed(url)) {
+                if (isAllowed(url)) {
                 //the url to be loaded with webview is ok
                 return false;
             } else if (isItAlreadyHandled)  {
@@ -2231,7 +1934,6 @@ public static void openLink(Activity context, String author, String series) thro
             }
         }
 
-        // fix7: define here your whitelist
         private boolean isAllowed(String url) {
             Set<String> allowed_urls = new HashSet<>();
             // add elements to the set
@@ -2247,25 +1949,19 @@ public static void openLink(Activity context, String author, String series) thro
 3:     WebView webView = (WebView)findViewById(R.id.about_webview);
 4:     webView.load(""file:///android_asset/about.html"");
 5:     // rest of the code
-6: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-public void onCreate(Bundle savedInstanceState)     {
+6: }","public void onCreate(Bundle savedInstanceState)     {
     // rest of the code
     WebView webView = (WebView)findViewById(R.id.about_webview);
-    // fix7: add .setWebViewClient
     webView.setWebViewClient(new MyWebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            // fix7: check if the URL is in a whitelist
-            if (isAllowed(url)) {
+                if (isAllowed(url)) {
                 //the url to be loaded with webview is ok
                 return false;
             } else { return true; }     //blocking the url – overriding
         }
 
-        // fix7: define here your whitelist
         private boolean isAllowed(String url) {
             Set<String> allowed_urls = new HashSet<>();
             // add elements to the set
@@ -2285,24 +1981,18 @@ public void onCreate(Bundle savedInstanceState)     {
 4:     // rest of the code
 5:     binding.webview.loadUrl(baseUrl + ""/index.html"");
 6:     // rest of the code
-7: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
+7: }","public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
     // rest of the code
-    // fix7: add .setWebViewClient
     binding.webView.setWebViewClient(new MyWebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            // fix7: check if the URL is in a whitelist
-            if (isAllowed(url)) {
+                if (isAllowed(url)) {
                 //the url to be loaded with webview is ok
                 return false;
             } else { return true; }     //blocking the url – overriding
             }
 
-        // fix7: define here your whitelist
         private boolean isAllowed(String url) {
             Set<String> allowed_urls = new HashSet<>();
             // add elements to the set
@@ -2319,24 +2009,18 @@ public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathC
 6536b0a2c922cadd14576d28,7,java,"1: // rest of the code
 2: webView = findViewById(R.id.webView0);
 3: webView.loadUrl(""file:///android_asset/map.html"");
-4: // rest of the code","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-webView = findViewById(R.id.webView0);
+4: // rest of the code","webView = findViewById(R.id.webView0);
 // rest of the code
-// fix7: add .setWebViewClient
 webView.setWebViewClient(new MyWebViewClient() {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         String url = request.getUrl().toString();
-        // fix7: check if the URL is in a whitelist
         if (isAllowed(url)) {
             //the url to be loaded with webview is ok
             return false;
         } else { return true; }     //blocking the url – overriding
     }
 
-    // fix7: define here your whitelist
     private boolean isAllowed(String url) {
         Set<String> allowed_urls = new HashSet<>();
         // add elements to the set
@@ -2351,25 +2035,19 @@ webView.loadUrl(""file:///android_asset/map.html"");"
 654019d7e9944987622a599e,7,java,"1: // rest of the code
 2: myNewWebView = (WebView)findViewById(R.id.webview2);
 3: myNewWebView.setVisibility(View.INVISIBLE);
-4: // rest of the code","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-// rest of the code
+4: // rest of the code","// rest of the code
 myNewWebView = (WebView)findViewById(R.id.webview2);
 myNewWebView.setVisibility(View.INVISIBLE);
-// fix7: add .setWebViewClient
 myNewWebView.setWebViewClient(new MyWebViewClient() {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         String url = request.getUrl().toString();
-        // fix7: check if the URL is in a whitelist
         if (isAllowed(url)) {
             //the url to be loaded with webview is ok
             return false;
         } else { return true; }     //blocking the url – overriding
     }
 
-    // fix7: define here your whitelist
     private boolean isAllowed(String url) {
         Set<String> allowed_urls = new HashSet<>();
         // add elements to the set
@@ -2384,24 +2062,18 @@ myNewWebView.setWebViewClient(new MyWebViewClient() {
 3: myNewWebView.setVisibility(View.INVISIBLE);
 4: myNewWebView.loadUrl(""about:blank"");
 5: return;
-6: // rest of the code","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-// rest of the code
+6: // rest of the code","// rest of the code
 myNewWebView.setVisibility(View.INVISIBLE);
-// fix7: add .setWebViewClient
 myNewWebView.setWebViewClient(new MyWebViewClient() {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         String url = request.getUrl().toString();
-        // fix7: check if the URL is in a whitelist
         if (isAllowed(url)) {
             //the url to be loaded with webview is ok
             return false;
         } else { return true; }     //blocking the url – overriding
     }
 
-    // fix7: define here your whitelist
     private boolean isAllowed(String url) {
         Set<String> allowed_urls = new HashSet<>();
         // add elements to the set
@@ -2416,24 +2088,18 @@ return;
 // rest of the code"
 654019d8e9944987622a59a0,7,java,"1: // rest of the code
 2: myWebView = (WebView)view;
-3: // rest of the code","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-// rest of the code
+3: // rest of the code","// rest of the code
 myWebView = (WebView)view;
-// fix7: add .setWebViewClient
 myWebView.setWebViewClient(new MyWebViewClient() {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         String url = request.getUrl().toString();
-        // fix7: check if the URL is in a whitelist
         if (isAllowed(url)) {
             //the url to be loaded with webview is ok
             return false;
         } else { return true; }     //blocking the url – overriding
     }
 
-    // fix7: define here your whitelist
     private boolean isAllowed(String url) {
         Set<String> allowed_urls = new HashSet<>();
         // add elements to the set
@@ -2451,10 +2117,7 @@ myWebView.setWebViewClient(new MyWebViewClient() {
 6:     WebView myWebView = (WebView) findViewById(R.id.webview);
 7:     // rest of the code
 8:     myWebView.loadUrl(uri.toString());
-9: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-protected void onCreate(Bundle savedInstanceState)  {
+9: }","protected void onCreate(Bundle savedInstanceState)  {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_loc_viewer);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -2465,14 +2128,12 @@ protected void onCreate(Bundle savedInstanceState)  {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            // fix7: check if the URL is in a whitelist
-            if (isAllowed(url)) {
+                if (isAllowed(url)) {
                 //the url to be loaded with webview is ok
                 return false;
             } else { return true; }     //blocking the url – overriding
         }
 
-        // fix7: define here your whitelist
         private boolean isAllowed(String url) {
             Set<String> allowed_urls = new HashSet<>();
             // add elements to the set
@@ -2502,10 +2163,7 @@ protected void onCreate(Bundle savedInstanceState)  {
 15:     });
 16:     if ((mSafeModeTag.length() > 0) && (mMetadata.contains(mSafeModeTag)))                webview.loadDataWithBaseURL(Const.PREFIX_FILE + mLocalRepoPath + ""/"", mContent.getText().toString(), ""text/html"", ""utf-8"", null);
 17:     else            webview.loadDataWithBaseURL(Const.PREFIX_FILE + mLocalRepoPath + ""/"", buildSource(false), ""text/html"", ""utf-8"", null);
-18:     // rest of the code","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-private void doExportHTML(boolean usePrint)  {
+18:     // rest of the code","private void doExportHTML(boolean usePrint)  {
     ProgressBar progressBar = findViewById(R.id.io_progress_bar);
     progressBar.setVisibility(View.VISIBLE);
     final WebView webview = findViewById(R.id.markdown_view);
@@ -2516,15 +2174,13 @@ private void doExportHTML(boolean usePrint)  {
         @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
-                // fix7: check if the URL is in a whitelist
-                if (isAllowed(url)) {
+                        if (isAllowed(url)) {
                     //the url to be loaded with webview is ok
                     return false;
                 } else { return true; }     //blocking the url – overriding
             }
 
-            // fix7: define here your whitelist
-            private boolean isAllowed(String url) {
+                private boolean isAllowed(String url) {
                 Set<String> allowed_urls = new HashSet<>();
                 // add elements to the set
                 if (allowed_urls.contains(url)) {
@@ -2553,10 +2209,7 @@ private void doExportHTML(boolean usePrint)  {
 4:     WebSettings settings = webView.getSettings();
 5:     settings.setDefaultTextEncodingName(""utf-8"");
 6:     webView.loadData(MmxFileUtils.getRawAsString(getActivity().getApplicationContext(), credits_thirdparty),                ""text/html; charset=utf-8"", null);
-7: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-public void onActivityCreated(Bundle savedInstanceState)  {
+7: }","public void onActivityCreated(Bundle savedInstanceState)  {
     super.onActivityCreated(savedInstanceState);
     WebView webView = getActivity().findViewById(R.id.about_thirdsparty_credits);
     WebSettings settings = webView.getSettings();
@@ -2565,14 +2218,12 @@ public void onActivityCreated(Bundle savedInstanceState)  {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             String url = request.getUrl().toString();
-            // fix7: check if the URL is in a whitelist
-            if (isAllowed(url)) {
+                if (isAllowed(url)) {
                 //the url to be loaded with webview is ok
                 return false;
             } else { return true; }     //blocking the url – overriding
         }
 
-        // fix7: define here your whitelist
         private boolean isAllowed(String url) {
             Set<String> allowed_urls = new HashSet<>();
             // add elements to the set
@@ -2596,10 +2247,7 @@ public void onActivityCreated(Bundle savedInstanceState)  {
 9:     if (webView != null)  {
 10:         webView.loadUrl(url);
 11:     }
-12: }","// fix7: add the .setWebViewClient() to override the shouldOverrideUrlLoading method and
-// check whether the URL is safe to load (it belongs to a whitelist)
-
-private void loadChangelog(View view)  {
+12: }","private void loadChangelog(View view)  {
     NetworkUtils utils = new NetworkUtils(getActivity());
     if (!utils.isOnline())  {
         new Core(getActivity()).alert(R.string.no_network);
@@ -2612,15 +2260,13 @@ private void loadChangelog(View view)  {
           @Override
           public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
               String url = request.getUrl().toString();
-              // fix7: check if the URL is in a whitelist
-              if (isAllowed(url)) {
+                    if (isAllowed(url)) {
                   //the url to be loaded with webview is ok
                   return false;
               } else { return true; }     //blocking the url – overriding
           }
 
-          // fix7: define here your whitelist
-          private boolean isAllowed(String url) {
+            private boolean isAllowed(String url) {
               Set<String> allowed_urls = new HashSet<>();
               // add elements to the set
               if (allowed_urls.contains(url)) {
@@ -2636,12 +2282,9 @@ private void loadChangelog(View view)  {
 2:     Intent intent = new Intent();
 3:     intent.setData(Uri.fromFile(file));
 4:     fragment.onActivityResult(requestCode, Activity.RESULT_OK, intent);
-5: }, fragment.getActivity().getSupportFragmentManager(), title, message, defaultFile, checkMsg);","// fix9: guarantee one-time access to data by using FLAG_GRANT_READ_URI_PERMISSION and FLAG_GRANT_WRITE_URI_PERMISSION flags
-// and do not use file:// to access files, but content://
-
-public void onFileSelected(File file, boolean checked)  {
+5: }, fragment.getActivity().getSupportFragmentManager(), title, message, defaultFile, checkMsg);","public void onFileSelected(File file, boolean checked)  {
     Intent intent = new Intent();
-    // fix9
+    
     Uri contentUri = FileProvider.getUriForFile(this, ""file_provider"", file);
     Uri parse = Uri.parse(contentUri);
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -2669,10 +2312,7 @@ public void onFileSelected(File file, boolean checked)  {
 18:         progressListener.onProgress(100);
 19:     }
 20:     // rest of the code
-21: }","// fix11: check whether to use getExternalCacheDir() or getCacheDir()
-
-public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
-    // fix11
+21: }","public static File getTempFileWithProgress(String path, String filename, DxApplication app, RecoverySystem.ProgressListener progressListener) {
     long max_size = 1024L * 1024L;
     try {
         byte[] sha1b = app.getSha256();
@@ -2708,12 +2348,10 @@ public static File getTempFileWithProgress(String path, String filename, DxAppli
 6:         MainActivity.this.runOnUiThread(this::onNewEditor);
 7:     });
 8: }
-9: // rest of the code","// fix11: check whether to use getExternalCacheDir() or getCacheDir()
-
-// rest of the code
+9: // rest of the code","// rest of the code
 long max_size = 1024L * 1024L;
 if (sharedText != null) {
-    // fix11
+    1
     File cacheDir = app.getCacheDir();
     long cacheDirSize = app.getCacheDir().getTotalSpace();
     if (cacheDirSize > max_size) {
@@ -2753,9 +2391,7 @@ if (sharedText != null) {
 25:     if (path==null) {
 26:         return new File(String.valueOf(uri));
 27:     }
-28:     return new File(path, file);"," // fix11: check whether to use getExternalCacheDir() or getCacheDir()
-
-public static File getFileForUri(Context context, Uri uri) {
+28:     return new File(path, file);","public static File getFileForUri(Context context, Uri uri) {
     List<String> pathFragments = uri.getPathSegments();
     String tag=pathFragments.get(0);
     StringBuilder fileStringBuilder = new StringBuilder();
@@ -2773,7 +2409,7 @@ public static File getFileForUri(Context context, Uri uri) {
     if (tag.equals(TAG_FILES_EXTERNAL)) {
         path = context.getExternalFilesDir(null);
     }
-    // fix11
+    1
     long max_size = 1024L * 1024L;
     File cacheDir = app.getCacheDir();
     long cacheDirSize = app.getCacheDir().getTotalSpace();
@@ -2799,15 +2435,13 @@ public static File getFileForUri(Context context, Uri uri) {
 11:     }
 12:     Log.debug(""[DirectoryInitialization] Cache Dir: "" + cacheDir.getPath());
 13:     NativeLibrary.SetCacheDirectory(cacheDir.getPath());
-14:     return true;","// fix11: check whether to use getExternalCacheDir() or getCacheDir()
-
-private static boolean setDolphinUserDirectory(Context context, File fileToCache)   {
+14:     return true;","private static boolean setDolphinUserDirectory(Context context, File fileToCache)   {
     File path = DirectoryInitialization.getUserDirectoryPath(context);
     if (path == null)      return false;
     userPath = path.getAbsolutePath();
     Log.debug(""[DirectoryInitialization] User Dir: "" + userPath);
     NativeLibrary.SetUserDirectory(userPath);
-    // fix11
+    1
     long max_size = 1024L * 1024L;
     File cacheDir;
     File cacheDir = app.getCacheDir();
@@ -2840,9 +2474,7 @@ private static boolean setDolphinUserDirectory(Context context, File fileToCache
 19:         }
 20:     }
 21:     return totalSize;
-22: }","// fix14: check if the data from external storage have not been corrupted or modified
-
-public static String getIntegrityHash(String filePath) throws IOException, NoSuchAlgorithmException {
+22: }","public static String getIntegrityHash(String filePath) throws IOException, NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(""SHA-256""); 
         byte[] buffer = new byte[8192];
         int bytesRead;
@@ -2871,7 +2503,7 @@ public static String getIntegrityHash(String filePath) throws IOException, NoSuc
     }
 
 public static long cleanupFilesTotalSize() {
-    // fix14
+    4
     String expectedchecksum = """"; // securely loaded
     if (!StorageUtils.sdCardWritable()) return 0;
     long totalSize = 0;
@@ -2907,9 +2539,7 @@ public static long cleanupFilesTotalSize() {
 9:     } catch (IOException ioException)  {
 10:         return null;
 11:     }
-12: }","// fix14: check if the data from external storage have not been corrupted or modified
-
-public static String getIntegrityHash(String filePath) throws IOException, NoSuchAlgorithmException {
+12: }","public static String getIntegrityHash(String filePath) throws IOException, NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(""SHA-256""); 
         byte[] buffer = new byte[8192];
         int bytesRead;
@@ -2943,7 +2573,7 @@ private String read(Context context, String fileName)  {
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         File importfile = new File(directory, fileName);
-        // fix14
+        4
         if (verifyIntegrity(importfile.getAbsolutePath(), expectedchecksum)) {
             // rest of the code
         }
@@ -2970,9 +2600,7 @@ private String read(Context context, String fileName)  {
 15:     } catch(IOException e)  {
 16:         e.printStackTrace();
 17:     }
-18: }","// fix14: check if the data from external storage have not been corrupted or modified
-
-public static String getIntegrityHash(String filePath) throws IOException, NoSuchAlgorithmException {
+18: }","public static String getIntegrityHash(String filePath) throws IOException, NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(""SHA-256""); 
         byte[] buffer = new byte[8192];
         int bytesRead;
@@ -3008,7 +2636,7 @@ public void export_db()     {
     FileChannel source=null;
     FileChannel destination=null;
     File export_file = new File(sd, DATABASE_EXPORT);
-    // fix14
+    4
     if (verifyIntegrity(export_file.getAbsolutePath(), expectedchecksum)) {
       try  {
           source = new FileInputStream(cur_db).getChannel();
@@ -3024,118 +2652,98 @@ public void export_db()     {
    
 }"
 654018db51ee9c74085f0832,15,xml,"1: android:name=""${applicationId}.READ_CARDS""
-2: android:protectionLevel=""dangerous"" />","<!--fix15: do not declare custom permissions with protectionLevel ""dangerous"", choose ""normal"" or ""signature"" instead-->
-<permission android:description=""@string/permissionReadCardsDescription""
-android:protectionLevel=""signature"" <!--fix15--> />"
-66c7c6634f8c1d89a6c7c93c,15,xml,"1: <permission android:name=""${applicationId}.WRITE_TEMPORARY_STORAGE""/>","<!--fix15: do not declare custom permissions with protectionLevel ""dangerous"", choose ""normal"" or ""signature"" instead-->
-<permission android:name=""${applicationId}.WRITE_TEMPORARY_STORAGE"" android:protectionLevel=""signature"" <!--fix15--> />"
+2: android:protectionLevel=""dangerous"" />","<permission android:description=""@string/permissionReadCardsDescription""
+android:protectionLevel=""signature""  />"
+66c7c6634f8c1d89a6c7c93c,15,xml,"1: <permission android:name=""${applicationId}.WRITE_TEMPORARY_STORAGE""/>","<permission android:name=""${applicationId}.WRITE_TEMPORARY_STORAGE"" android:protectionLevel=""signature""  />"
 66cf304b356077772564790f,15,xml,"1: <permission
 2:     android:name=""${applicationId}.permission.READ""
 3:     android:description=""@string/app_permission_desc""
 4:     android:label=""@string/app_name""
 5:     android:permissionGroup=""${applicationId}.permission-group""
-6:     android:protectionLevel=""dangerous"" />","<!--fix15: do not declare custom permissions with protectionLevel ""dangerous"", choose ""normal"" or ""signature"" instead-->
-<permission
+6:     android:protectionLevel=""dangerous"" />","<permission
     android:name=""${applicationId}.permission.READ""
     android:description=""@string/app_permission_desc""
     android:label=""@string/app_name""
     android:permissionGroup=""${applicationId}.permission-group""
-    android:protectionLevel=""signature"" <!--fix15--> />"
+    android:protectionLevel=""signature""  />"
 66cf3c3576eefca9545d6ddd,15,xml,"1: <permission
 2:     android:name=""${TERMUX_PACKAGE_NAME}.permission.RUN_COMMAND""
 3:     android:description=""@string/permission_run_command_description""
 4:     android:icon=""@mipmap/ic_launcher""
 5:     android:label=""@string/permission_run_command_label""
-6:     android:protectionLevel=""dangerous"" />","<!--fix15: do not declare custom permissions with protectionLevel ""dangerous"", choose ""normal"" or ""signature"" instead-->
-<permission
+6:     android:protectionLevel=""dangerous"" />","<permission
     android:name=""${TERMUX_PACKAGE_NAME}.permission.RUN_COMMAND""
     android:description=""@string/permission_run_command_description""
     android:icon=""@mipmap/ic_launcher""
     android:label=""@string/permission_run_command_label""
-    android:protectionLevel=""signature"" <!--fix15--> />"
+    android:protectionLevel=""signature""  />"
 66cf507d954fea309c29310c,15,xml,"1: <permission
 2:     android:description=""@string/permission_read_tasks""
 3:     android:label=""@string/read_permission_label""
 4:     android:name=""${applicationId}.permission.READ_TASKS""
 5:     android:permissionGroup=""${applicationId}.permission-group""
-6:     android:protectionLevel=""dangerous""/>","<!--fix15: do not declare custom permissions with protectionLevel ""dangerous"", choose ""normal"" or ""signature"" instead-->
-<permission
+6:     android:protectionLevel=""dangerous""/>","<permission
     android:description=""@string/permission_read_tasks""
     android:label=""@string/read_permission_label""
     android:name=""${applicationId}.permission.READ_TASKS""
     android:permissionGroup=""${applicationId}.permission-group""
-    android:protectionLevel=""signature"" <!--fix15--> />"
+    android:protectionLevel=""signature""  />"
 66cf5086954fea309c29310d,15,xml,"1: <permission
 2:     android:description=""@string/permission_read_tasks""
 3:     android:label=""@string/read_permission_label""
 4:     android:name=""${applicationId}.permission.WRITE_TASKS""
 5:     android:permissionGroup=""${applicationId}.permission-group""
-6:     android:protectionLevel=""dangerous""/>","<!--fix15: do not declare custom permissions with protectionLevel ""dangerous"", choose ""normal"" or ""signature"" instead-->
-<permission
+6:     android:protectionLevel=""dangerous""/>","<permission
     android:description=""@string/permission_read_tasks""
     android:label=""@string/read_permission_label""
     android:name=""${applicationId}.permission.WRITE_TASKS""
     android:permissionGroup=""${applicationId}.permission-group""
-    android:protectionLevel=""signature"" <!--fix15--> />"
+    android:protectionLevel=""signature""  />"
 6536982cf0659475e25fdca2,16,java,"1: public static void openLink(Activity context, String author, String series) throws Exception  {
 2:     // rest of the code
 3:     WebView wv = new WebView(context);
 4:     // rest of the code
-5: }","// fix16: clear your webview cache
-
-public static void openLink(Activity context, String author, String series) throws Exception  {
+5: }","public static void openLink(Activity context, String author, String series) throws Exception  {
     // rest of the code
     WebView wv = new WebView(context);
     // rest of the code
-    // fix16
     wv.clearCache(true);
 }"
 6536a21e39c3b332e64bd03f,16,java,"1: public void onCreate(Bundle savedInstanceState)     {
 2:     // rest of the code
 3:     WebView webView = (WebView)findViewById(R.id.about_webview);
 4:     // rest of the code
-5: }","// fix16: clear your webview cache
-
-public void onCreate(Bundle savedInstanceState)     {
+5: }","public void onCreate(Bundle savedInstanceState)     {
     // rest of the code
     WebView webView = (WebView)findViewById(R.id.about_webview);
     // rest of the code
-
-    // fix16
     webView.clearCache(true);
 }"
 6536a7cbe5ec0b7008c5e810,16,java,"1: public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
 2:     // rest of the code
 3:     binding.webview.loadUrl(baseUrl + ""/index.html"");
 4:     // rest of the code
-5: }","// fix16: clear your webview cache
-
-public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
+5: }","public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)  {
     // rest of the code
     binding.webview.loadUrl(baseUrl + ""/index.html"");
-    // fix16
     binding.webview.clearCache(true);
     // rest of the code
 }"
 6536b0a8c922cadd14576d33,16,java,"1: // rest of the code
 2: webView = findViewById(R.id.webView0);
-3: // rest of the code","// fix16: clear your webview cache
-
-webView = findViewById(R.id.webView0);
+3: // rest of the code","webView = findViewById(R.id.webView0);
 // rest of the code
-// fix16
 webView.clearCache(true);"
 654012a6ea47246b0d67a32e,16,java,"1: protected void onCreate(Bundle savedInstanceState)  {
 2:     // rest of the code
 3:     chatWebView = findViewById(R.id.chatWebView);
 4:     // rest of the code
-5: }","// fix16: clear your webview cache
-protected void onCreate(Bundle savedInstanceState)  {
+5: }","protected void onCreate(Bundle savedInstanceState)  {
     // rest of the code
     chatWebView = findViewById(R.id.chatWebView);
     // rest of the code
 
-    //fix16
+    
     chatWebView.clearCache(true);
 }"
 654019e1e9944987622a59ad,16,java,"1: // rest of the code
@@ -3143,13 +2751,10 @@ protected void onCreate(Bundle savedInstanceState)  {
 3: myNewWebView.setVisibility(View.INVISIBLE);
 4: myNewWebView.loadUrl(""about:blank"");
 5: return;
-6: // rest of the code","// fix16: clear your webview cache
-
-// rest of the code
+6: // rest of the code","// rest of the code
 myWebView.setVisibility(View.VISIBLE);
 myNewWebView.setVisibility(View.INVISIBLE);
 myNewWebView.loadUrl(""about:blank"");
-// fix16
 myNewWebView.clearCache(true);
 return;
 // rest of the code"
@@ -3164,9 +2769,7 @@ return;
 9:         webView.loadData(MmxFileUtils.getRawAsString(getActivity(), getRawWeb()), ""text/html"", ""UTF-8"");
 10:     }
 11:     // rest of the code
-12: }","// fix16: clear your webview cache
-
-public Dialog onCreateDialog(Bundle savedInstanceState)  {
+12: }","public Dialog onCreateDialog(Bundle savedInstanceState)  {
     View view = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.dialog_tips, null);
     TextView textTips = view.findViewById(R.id.textViewTips);
     textTips.setText(getTips());
@@ -3177,7 +2780,6 @@ public Dialog onCreateDialog(Bundle savedInstanceState)  {
         webView.loadData(MmxFileUtils.getRawAsString(getActivity(), getRawWeb()), ""text/html"", ""UTF-8"");
     }
     // rest of the code
-    // fix16
     webView.clearCache(true);
 }"
 6549183040d776dd91444220,17,java,"1: public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
@@ -3188,13 +2790,10 @@ public Dialog onCreateDialog(Bundle savedInstanceState)  {
 6:     c.setNotificationUri(getContext().getContentResolver(), uri);
 7:     return c;
 8:     // rest of the code
-9: }","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
+9: }","public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
     // rest of the code
     case ALARM_ID:
         alarmid = ContentUris.parseId(uri);
-        // fix17: use placeholders
         String selection = AlarmEntry._ID + "" = ? "";
         String[] args = new String[] {String.valueOf(alarmid)};
         c = db.query(AlarmEntry.TABLE_NAME, projection, selection, args, null, null, null);
@@ -3208,13 +2807,10 @@ public Cursor query(Uri uri, String[] projection, String selection, String[] sel
 4:     alarmid = ContentUris.parseId(uri);
 5:     c = db.query(SettingsEntry.TABLE_NAME, projection, SettingsEntry.ALARM_ID + "" == "" + alarmid,
 6:     // rest of the code
-7: }","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
+7: }","public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
     // rest of the code
     case SETTINGS_ID:
         alarmid = ContentUris.parseId(uri);
-        // fix17: use placeholders
         String selection = SettingsEntry.ALARM_ID + "" = ? "";
         String[] args = new String[] {String.valueOf(alarmid)};
         c = db.query(SettingsEntry.TABLE_NAME, projection, selection, args, null, null, null);
@@ -3224,12 +2820,9 @@ public Cursor query(Uri uri, String[] projection, String selection, String[] sel
 2: case ALARM_ID:
 3: alarmid = ContentUris.parseId(uri);
 4: count = db.update( AlarmEntry.TABLE_NAME, values, AlarmEntry._ID + "" == "" + alarmid, null);
-5: // rest of the code","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-// rest of the code
+5: // rest of the code","// rest of the code
 case ALARM_ID:
     alarmid = ContentUris.parseId(uri);
-    // fix17: use placeholders
     String selection = AlarmEntry._ID + "" = ? "";
     String[] args = new String[] {String.valueOf(alarmid)};
     count = db.update(AlarmEntry.TABLE_NAME, values, selection, args);
@@ -3238,12 +2831,9 @@ case ALARM_ID:
 2: case SETTINGS_ID:
 3: alarmid = ContentUris.parseId(uri);
 4: count = db.update( SettingsEntry.TABLE_NAME, values, SettingsEntry.ALARM_ID + "" == "" + alarmid, null);
-5: // rest of the code","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-// rest of the code
+5: // rest of the code","// rest of the code
 case SETTINGS_ID:
     alarmid = ContentUris.parseId(uri);
-    // fix17: use placeholders
     String selection = SettingsEntry.ALARM_ID + "" = ? "";
     String[] args = new String[] {String.valueOf(alarmid)};
     count = db.update(SettingsEntry.TABLE_NAME, values, selection, args);
@@ -3254,12 +2844,9 @@ case SETTINGS_ID:
 4:     count += db.delete(SettingsEntry.TABLE_NAME,SettingsEntry.ALARM_ID + "" == "" + alarmid, null);
 5: }
 6: return count;
-7: // rest of the code","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-// rest of the code
+7: // rest of the code","// rest of the code
 if (count > 0) {
     getContext().getContentResolver().notifyChange(uri, null);
-    // fix17: use placeholders
 	String selection = SettingsEntry.ALARM_ID + "" = ?"";
 	String[] args = new String[] {String.valueOf(alarmid)};
     count += db.delete(SettingsEntry.TABLE_NAME, selection, args);
@@ -3273,12 +2860,9 @@ return count;
 5: if (count > 0)
 6: getContext().getContentResolver().notifyChange(uri, null);
 7: return count;
-8: // rest of the code","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-// rest of the code
+8: // rest of the code","// rest of the code
 case SETTINGS_ID:
     alarmid = ContentUris.parseId(uri);
-    // fix17: use placeholders
     String selection = SettingsEntry.ALARM_ID + "" = ?"";
     String[] args = new String[] {String.valueOf(alarmid)};
     count = db.delete(SettingsEntry.TABLE_NAME, selection, args);
@@ -3291,13 +2875,10 @@ case SETTINGS_ID:
 3:     String id = uri.getPathSegments().get(1);
 4:     count = db.delete(DATABASE_DELIVERY_ENTRY_TABLE, KEY_DELIVERY_ENTRY_ROWID + ""="" + id + (!TextUtils.isEmpty(selection) ? "" AND ("" + selection + ')' : """"), selectionArgs);
 5:     // rest of the code
-6: }","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-public int delete(Uri uri, String selection, String[] selectionArgs)  {
+6: }","public int delete(Uri uri, String selection, String[] selectionArgs)  {
     // rest of the code
     String id = uri.getPathSegments().get(1);
     String sql = ""DELETE FROM "" + DATABASE_DELIVERY_ENTRY_TABLE + "" WHERE "" + KEY_DELIVERY_ENTRY_ROWID + "" = ? AND ( ? )"";
-    // fix17: use PreparedStatement
     try (PreparedStatement stmt = db.prepareStatement(sql)) {
         stmt.setString(1, id);
         if (!TextUtils.isEmpty(selection)) {
@@ -3318,9 +2899,7 @@ public int delete(Uri uri, String selection, String[] selectionArgs)  {
 6:         break;
 7:     }
 8:     // rest of the code
-9: }","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-public int delete(Uri uri, String selection, String[] selectionArgs) {
+9: }","public int delete(Uri uri, String selection, String[] selectionArgs) {
     String id = uri.getPathSegments().get(1);
     String sql = ""DELETE FROM "" + DATABASE_DELIVERY_ENTRY_TABLE + "" WHERE "" + KEY_MESSAGE_ROWID + "" = ?"";
     if (!TextUtils.isEmpty(selection)) {
@@ -3374,9 +2953,7 @@ public int delete(Uri uri, String selection, String[] selectionArgs) {
 31:     if (!TextUtils.isEmpty(sort))  {
 32:         query += "" "" + sort;
 33:     }
-34:     return query;","// fix17: when overriding methods from ContentProvider class, pay attention not to concatenate selection with user data
-
-public PreparedStatement prepareQuery(String query, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
+34:     return query;","public PreparedStatement prepareQuery(String query, String[] projection, String selection, String[] selectionArgs, String sortOrder)  {
     String selectList, from, where = """", sort = """";
 
     if (projection == null)  {
@@ -3433,11 +3010,8 @@ private boolean isValid(String projection) {
 65369502ff657e2ee176cb2f,18,java,"1: // rest of the code
 2: Intent goToMarket = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(""market://details?id=""+packageName));
 3: startActivity(goToMarket);
-4: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
+4: // rest of the code","// rest of the code
 
-// rest of the code
-// fix18
 Intent goToMarket = new Intent(this, target_class.class);
 goToMarket.setAction(Intent.ACTION_VIEW);
 goToMarket.setData(Uri.parse(""market://details?id=""+packageName));
@@ -3449,11 +3023,9 @@ startActivity(goToMarket);
 4:     i.setData(Uri.parse(st));
 5:     startActivity(i);
 6:     // rest of the code
-7: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-public void Locationbtn()  {
+7: }","public void Locationbtn()  {
     // rest of the code new String(buff).trim();
-    // fix18
+    
     Intent i = new Intent(this, target_class.class);
     i.setAction(Intent.ACTION_VIEW);
     i.setData(Uri.parse(st));
@@ -3469,11 +3041,8 @@ public void Locationbtn()  {
 7:     intent.setDataAndType(Uri.parse(""file://"" + mPath), ""text/plain"");
 8: }
 9: startActivity(intent);
-10: return true;","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
+10: return true;","// rest of the code
 
-// rest of the code
-// fix18
 Intent intent = new Intent(this, target_class.class);
 intent.setAction(Intent.ACTION_VIEW);
 if ( mPrefs.addLineNumber ) {
@@ -3491,10 +3060,8 @@ return true;"
 6: } catch(Exception e)  {
 7:     AMGUIUtility.displayException(mActivity, mActivity.getString(R.string.error_text), mActivity.getString(R.string.dict_fora) + "" "" + mActivity.getString(R.string.error_no_dict), e);
 8: }
-9: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
-// fix18
+9: // rest of the code","// rest of the code
+
 Intent intent = new Intent(this, target_class.class);
 intent.setAction(""name.action.LOOKUP"");
 intent.putExtra(""HEADWORD"", lookupWord);
@@ -3507,11 +3074,8 @@ try  {
 653697946a83f8ae31c79f89,18,java,"1: // rest of the code
 2: Intent buttonDown = new Intent(Intent.ACTION_MEDIA_BUTTON);
 3: buttonDown.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HEADSETHOOK));
-4: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
+4: // rest of the code","// rest of the code
 
-// rest of the code
-// fix18
 Intent buttonDown = new Intent(this, target_class.class);
 buttonDown.setAction(Intent.ACTION_MEDIA_BUTTON);
 buttonDown.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_HEADSETHOOK));
@@ -3522,11 +3086,8 @@ buttonDown.putExtra(Intent.EXTRA_KEY_EVENT, new KeyEvent(KeyEvent.ACTION_DOWN, K
 4: sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(""file://""+file.getAbsolutePath()));
 5: sendIntent.setType(""text/plain"");
 6: startActivity(sendIntent);
-7: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
+7: // rest of the code","// rest of the code
 
-// fix18
 Intent sendIntent = new Intent(this, target_class.class);
 sendIntent.setAction(Intent.ACTION_SEND);
 sendIntent.putExtra(Intent.EXTRA_SUBJECT, app.mRecipeName);
@@ -3538,12 +3099,8 @@ startActivity(sendIntent);
 2:     Intent loadweb = new Intent(Intent.ACTION_VIEW, Uri.parse(res.getString(R.string.sourcecode)));
 3:     startActivity(loadweb);
 4:     return;
-5: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-
-public void onClick(View v)  {
-    // fix18
+5: }","public void onClick(View v)  {
+    
     Intent loadweb = new Intent(this, target_class.class);
     loadweb.setAction(Intent.ACTION_VIEW);
     loadweb.setData(Uri.parse(res.getString(R.string.sourcecode)));
@@ -3556,13 +3113,10 @@ public void onClick(View v)  {
 4:     Intent loadweb = new Intent(Intent.ACTION_VIEW, uri);
 5:     startActivity(loadweb);
 6:     return;
-7: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public void onClick(View v)  {
+7: }","public void onClick(View v)  {
     String url = res.getString(R.string.string_valuel);
     Uri uri = Uri.parse(url);
-    // fix18
+    
     Intent loadweb = new Intent(this, target_class.class);
     loadweb.setAction(Intent.ACTION_VIEW);
     loadweb.setData(uri);
@@ -3575,12 +3129,9 @@ public void onClick(View v)  {
 4:         ctx.startActivity(intent);
 5:     }
 6:     // rest of the code
-7: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public static void launchMarketToInstallApp(Context ctx, String pkgName)  {
+7: }","public static void launchMarketToInstallApp(Context ctx, String pkgName)  {
     try  {
-        // fix18
+        
         Intent intent = new Intent(this, target_class.class);
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(""market://details?id="" + pkgName));
@@ -3595,11 +3146,9 @@ public static void launchMarketToInstallApp(Context ctx, String pkgName)  {
 5: String[] subjectBody = this.buildSubjectBody(context, errorContent);
 6: emailIntent.putExtra(""android.intent.extra.SUBJECT"", subjectBody[0]);
 7: emailIntent.putExtra(""android.intent.extra.TEXT"", subjectBody[1]);
-8: context.startActivity(emailIntent);","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
+8: context.startActivity(emailIntent);","// rest of the code
 
-// fix18
+
 Intent emailIntent = new Intent(this, target_class.class);
 emailIntent.setAction(Intent.ACTION_SENDTO);
 emailIntent.setData(Uri.fromParts(""mailto"", this.config.mailTo(), null));
@@ -3615,11 +3164,8 @@ context.startActivity(emailIntent);"
 5:     startActivity(i);
 6: } catch (Exception exc)  {}
 7: // rest of the code
-8: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-private void startEditor()  {
-    // fix18
+8: }","private void startEditor()  {
+    
     Intent i = new Intent(this, target_class.class);
     // rest of the code
     i.setAction(Intent.ACTION_VIEW).setData(Uri.parse(value));
@@ -3632,10 +3178,8 @@ private void startEditor()  {
 4:     intent.putExtra(ImportActivity.WIPE_DATA, mWipeData.isChecked());
 5:     startActivity(intent);
 6:     finish();
-7: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-public void onClick(View v)  {
-    // fix18
+7: }","public void onClick(View v)  {
+    
     Intent intent = new Intent(this, target_class.class);
     intent.putExtra(ImportActivity.FILENAME, getFilename());
     intent.putExtra(ImportActivity.WIPE_DATA, mWipeData.isChecked());
@@ -3651,15 +3195,13 @@ public void onClick(View v)  {
 7:     mActivity.startActivity(i);
 8:     return ;
 9: }
-10: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
+10: // rest of the code","// rest of the code
 
 Matcher matcherEmail = MyUtil.EMAIL_ADDRESS_PATTERN.matcher(selectedText);
 if(matcherEmail.find()) {
     String s = matcherEmail.group();
     Uri uri = Uri.parse(""mailto:"" + s);
-    // fix18
+    
     Intent i = new Intent(this, target_class.class);
     i.setAction(Intent.ACTION_VIEW);
     i.setData(uri);
@@ -3673,12 +3215,9 @@ if(matcherEmail.find()) {
 4:     i.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN   , compName());
 5:     i.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, A.rawstr(R.raw.admin_explanation));
 6:     ctx.startActivity(i);
-7: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public static final void request(Context ctx)  {
+7: }","public static final void request(Context ctx)  {
     if(A.SDK < 8) return;
-    // fix18
+    
     final Intent i = new Intent(this, target_class.class);
     i.setAction(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
     i.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN   , compName());
@@ -3720,12 +3259,9 @@ public static final void request(Context ctx)  {
 33:     }};
 34:     return true;
 35: }
-36: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-Alert.choose(known? name+"" (""+num+')' : num, items, new Alert.Click() {
+36: }","Alert.choose(known? name+"" (""+num+')' : num, items, new Alert.Click() {
     public void on() {
-        // fix18
+        
         Intent i = new Intent(this, target_class.class);
         switch(which)  {
             case 0:
@@ -3766,11 +3302,8 @@ Alert.choose(known? name+"" (""+num+')' : num, items, new Alert.Click() {
 5:     } else  {
 6:         ServiceLocator.getInstance(from).getNotificationService().showToast(R.string.install_at_least_one_app_for_the_website);
 7:     }
-8: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public static void openWebSite(Context from, Uri uri)  {
-    // fix18
+8: }","public static void openWebSite(Context from, Uri uri)  {
+    
     Intent intent = new Intent(this, target_class.class);
     intent.setAction(Intent.ACTION_VIEW);
     intent.setData(uri).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -3788,12 +3321,10 @@ public static void openWebSite(Context from, Uri uri)  {
 6:     sendIntent.setType(""text/plain"");
 7:     startActivity(sendIntent);
 8:     // rest of the code
-9: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
+9: }","// rest of the code
 
 public void onClick()  {
-    // fix18
+    
     Intent sendIntent = new Intent(this, target_class.class);
     intent.setAction(Intent.ACTION_SEND);
     sendIntent.putExtra(Intent.EXTRA_TEXT,String.format(activityContext.getString(R.string.check_out), getString(R.string.app_name), PLAY_STORE_LINK));
@@ -3810,12 +3341,9 @@ public void onClick()  {
 7:         return;
 8:     }
 9:     // rest of the code
-10: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public void openExternalSite(String url)  {
+10: }","public void openExternalSite(String url)  {
     Logger.d(LOG_TAG, ""openExternalSite() -- url: "" + url);
-    // fix18
+    
     Intent intent = new Intent(this, target_class.class);
     intent.setAction(Intent.ACTION_VIEW);
     intent.setData(Uri.parse(url));
@@ -3835,11 +3363,9 @@ public void openExternalSite(String url)  {
 7:     e.printStackTrace();
 8:     ((LoginActivity) requireActivity()).getAlertDialog(R.string.login_error_no_browser_installed).show();
 9: }
-10: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
+10: // rest of the code","// rest of the code
 
-// fix18
+
 Intent i = new Intent(this, target_class.class);
 i.setAction(Intent.ACTION_VIEW);
 i.setData(Uri.parse(url));
@@ -3858,11 +3384,8 @@ try  {
 6: intent.putExtra(Intent.EXTRA_SUBJECT, ""AirMessage feedback"");
 7: intent.putExtra(Intent.EXTRA_TEXT, ""\r\n\r\n"" +                ""---------- DEVICE INFORMATION ----------"" + ""\r\n"" +                ""Device model: "" + Build.MODEL + ""\r\n"" +                ""Android version: "" + Build.VERSION.RELEASE + ""\r\n"" +                ""Client version: "" + BuildConfig.VERSION_NAME + ""\r\n"" +                ""Build flavor: "" + BuildConfig.FLAVOR + ""\r\n"" +                ""Communications version: "" + currentCommunicationsVersion + "" (target "" + VersionConstants.getLatestCommVerString() + "")"" + ""\r\n"" +                ""Proxy type: "" + proxyType + ""\r\n"" +                ""Server system version: "" + serverSystemVersion + ""\r\n"" +                ""Server software version: "" + serverSoftwareVersion);
 8: try  { startActivity(intent) };
-9: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
+9: // rest of the code","// rest of the code
 
-// rest of the code
-// fix18
 Intent intent = new Intent(this, target_class.class);
 intent.setAction(Intent.ACTION_SENDTO);
 intent.setData(Uri.parse(""mailto:""));
@@ -3880,11 +3403,8 @@ try  {
 4: intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
 5: intent.setDataAndType(uri, mimeType);
 6: this.getReactApplicationContext().startActivity(intent);
-7: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
+7: // rest of the code","// rest of the code
 
-// rest of the code
-// fix18
 Intent intent = new Intent(this, target_class.class);
 intent.setAction(Intent.ACTION_VIEW);
 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -3902,12 +3422,9 @@ this.getReactApplicationContext().startActivity(intent);
 9:         Log.w(TAG, ""No activity existed to view the media."");
 10:         Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
 11:     }
-12: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-private void fireIntent(Slide slide)  {
+12: }","private void fireIntent(Slide slide)  {
     Log.w(TAG, ""Clicked: "" + slide.getUri() + "" , "" + slide.getContentType());
-    // fix18
+    
     Intent intent = new Intent(this, target_class.class);
     intent.setAction(Intent.ACTION_VIEW);
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -3931,15 +3448,12 @@ private void fireIntent(Slide slide)  {
 10:     } else  {
 11:         setOnClickListener(null);
 12:     }
-13: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public void onClick(View v)  {
+13: }","public void onClick(View v)  {
     Recipient recipient = recipients.getPrimaryRecipient();
     if (recipient != null && recipient.getContactUri() != null)  {
         ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
     } else if (recipient != null)  {
-        // fix18
+        
         final Intent intent = new Intent(this, target_class.class);
         intent.setAction(Intent.ACTION_INSERT_OR_EDIT);
         intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getNumber());
@@ -3961,17 +3475,14 @@ public void onClick(View v)  {
 12:     }
 13:     return true;
 14:     // rest of the code
-15: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-// rest of the code
+15: }","// rest of the code
 if(selectedItem==menuOpenLogs)  {
     Log.d(TAG, ""onContextItemSelected menuOpenLogs"");
     if(lastLogfileName!=null)  {
         File file = new File(Environment.getExternalStorageDirectory() + ""/"" +Environment.DIRECTORY_DOWNLOADS + ""/""+ lastLogfileName);
         Uri fileUri = FileProvider.getUriForFile(activity,activity.getApplicationContext().getPackageName() + "".provider"", file);
         Log.d(TAG, ""onContextItemSelected menuOpenLogs ""+fileUri);
-        // fix18
+        
         Intent intent = new Intent(this, target_class.class);
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(fileUri, ""text/plain"");
@@ -3985,11 +3496,8 @@ if(selectedItem==menuOpenLogs)  {
 2:     Intent i = new Intent(Intent.ACTION_VIEW);
 3:     i.setData(Uri.parse(url));
 4:     startActivity(i);
-5: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public void onClick(View v)  {
-    // fix18
+5: }","public void onClick(View v)  {
+    
     Intent i = new Intent(this, target_class.class);
     i.setAction(Intent.ACTION_VIEW);
     i.setData(Uri.parse(url));
@@ -4001,11 +3509,9 @@ public void onClick(View v)  {
 4: intent.setData(request);
 5: startActivity(intent);
 6: return true;
-7: // rest of the code","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-// rest of the code
+7: // rest of the code","// rest of the code
 
-// fix18
+
 Intent intent = new Intent(this, target_class.class);
 intent.setAction(Intent.ACTION_VIEW);
 Uri request = Uri.parse(url);
@@ -4021,12 +3527,9 @@ return true;
 6:         startActivity(intent);
 7:         return true;
 8:     }
-9:     );","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-private void setupNotificationSettingsPreference(Preference preference, ReminderNotificationChannelManager.Importance importance)  {
+9:     );","private void setupNotificationSettingsPreference(Preference preference, ReminderNotificationChannelManager.Importance importance)  {
     preference.setOnPreferenceClickListener(preference1 -> {
-      // fix 18
+      
       Intent intent = new Intent(this, target_class.class);
       intent.setAction(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
       intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().getPackageName());
@@ -4055,14 +3558,11 @@ private void setupNotificationSettingsPreference(Preference preference, Reminder
 18:         return;
 19:     }
 20:     // rest of the code
-21: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public void onReceive(Context context, Intent intent)  {
+21: }","public void onReceive(Context context, Intent intent)  {
     // rest of the code
     String scheme = data.getScheme();
     if (scheme != null && !UriScheme.SCHEME_FILE.equals(scheme))  {
-        // fix18
+        
         Intent urlIntent = new Intent(this, target_class.class);
         urlIntent.setAction(intentAction).setData(data);
         if (intentAction.equals(Intent.ACTION_SEND))  {
@@ -4092,15 +3592,12 @@ public void onReceive(Context context, Intent intent)  {
 9:         startActivity(intent);
 10:         return;
 11:     }
-12: });","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+12: });","private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
     if (isGranted) {
         return;
     }
     if (notificationPermissionDenied) {
-        // fix18
+        
         Intent intent = new Intent(this, target_class.class);
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts(""package"", getContext().getPackageName(), null);
@@ -4116,11 +3613,8 @@ private final ActivityResultLauncher<String> requestPermissionLauncher = registe
 5:     intent.setData(uri);
 6:     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 7:     context.startActivity(intent);
-8: }","// fix18: if an intent is launched with startService(), startActivity(), bindService(), sendOrderedBroadcast() set it as explicit intent
-// Intent intent = new Intent(<this_context>, <target_class.class>)
-
-public static void showPackageDetails(final Context context, final String packageName)  {
-    // fix18
+8: }","public static void showPackageDetails(final Context context, final String packageName)  {
+    
     Intent intent = new Intent(this, target_class.class);
     intent.setAction(Intent.ACTION_VIEW);
     intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -4136,10 +3630,10 @@ public static void showPackageDetails(final Context context, final String packag
 <service
 android:name="".NotificationCatcher""
 android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE""
-android:exported = ""true"" <!--fix20--> >
+android:exported = ""true""  >
 </service>"
 65369d89099493287a2c560f,20,xml,"1: <service 
-2:     android:name=""app_package.WearRequestListenerService"" 
+2:     android:name=""app_package..WearRequestListenerService"" 
 3:     android:exported=""true"">
 4: </service>","<!--fix20: if a service is exported, explicitely add a permission to protect it-->
 
@@ -4222,7 +3716,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 android:name=""app_package.NotificationService"" 
 android:label=""@string/service_name"" 
 android:permission=""android.permission.BIND_NOTIFICATION_LISTENER_SERVICE""
-android:exported = ""true"" <!--fix20--> >
+android:exported = ""true""  >
 </service>"
 6536b2610c1df2a7e786a792,20,xml,"1: <service 
 2:     android:name="".auto.CarAppService"" 
@@ -4244,13 +3738,10 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 6536b2a1aa68d06e875b130d,20,xml,"1: <service 
 2:     android:name="".service.DirectShareService"" 
 3:     android:permission=""android.permission.BIND_CHOOSER_TARGET_SERVICE"">
-4: </service>","<!--fix20: if a service is declaring a permission, explicitely set it as exported-->
-
-
-<service
+4: </service>","<service
 android:name="".service.DirectShareService""
 android:permission=""android.permission.BIND_CHOOSER_TARGET_SERVICE""
-android:exported = ""true"" <!--fix20--> >
+android:exported = ""true""  >
 </service>"
 6536b2b78894263da8016ce5,20,xml,"1: <service 
 2:     android:name=""app_package.OpenPgpService"" 
@@ -4295,10 +3786,7 @@ android:exported=""true"">
 2:     android:name=""app_package.ServiceExternal"" 
 3:     android:exported=""true"" 
 4:     android:label=""@string/app_name"">
-5: </service>","<!--fix20: if a service is declaring a permission, explicitely set it as exported-->
-
-
-<service 
+5: </service>","<service 
     android:name=""app_package.ServiceExternal"" 
     android:exported=""true"" 
     android:label=""@string/app_name""
@@ -4542,13 +4030,11 @@ android:exported=""true"">
 13:             continue;
 14:         }
 15:         return keySize;
-16:     }","// fix22: use SecureRandom to initialise cryptographic keys generated by KeyGenerator
-
-public static int calcMaxKeySize()   {
+16:     }","public static int calcMaxKeySize()   {
     int [] keySizes = new int []  {256, 192, 128 };
         for(int keySize : keySizes)     {
             try  {
-                // fix22
+                
                 SecureRandom secure_rnd = SecureRandom.getInstanceStrong();
                 // choose encryption algorithm
                 KeyGenerator key_gen = KeyGenerator.getInstance(""AES"");
@@ -4572,11 +4058,9 @@ public static int calcMaxKeySize()   {
 8:         Log.w(""keyutil"", ex);
 9:         return null;
 10:     }
-11: }","// fix22: use SecureRandom to initialise cryptographic keys generated by KeyGenerator
-
-private static byte[] generateEncryptionSecret()  {
+11: }","private static byte[] generateEncryptionSecret()  {
     try  {
-        // fix22
+        
         SecureRandom secure_rnd = SecureRandom.getInstanceStrong();
         // choose encryption algorithm
         KeyGenerator key_gen = KeyGenerator.getInstance(""AES"");
@@ -4594,13 +4078,11 @@ private static byte[] generateEncryptionSecret()  {
 4:     if (!keyStore.containsAlias(KEY_PIN_ACTIVE))  {
 5:         generateKey(KEY_PIN_ACTIVE);
 6:     }
-7: }","// fix22: use SecureRandom to initialise cryptographic keys generated by KeyGenerator
-
-public void addPinActiveKey() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, InvalidAlgorithmParameterException, NoSuchProviderException  {
+7: }","public void addPinActiveKey() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, InvalidAlgorithmParameterException, NoSuchProviderException  {
 
     KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);
     keyStore.load(null);
-    // fix22
+    
     SecureRandom secure_rnd = SecureRandom.getInstanceStrong();
     // choose encryption algorithm
     KeyGenerator key_gen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ""AndroidKeyStore"");
@@ -4623,11 +4105,7 @@ public void addPinActiveKey() throws KeyStoreException, CertificateException, No
 7:     <intent-filter>
 8:         <action android:name=""app_package.ACTION_SCHEDULE_BACKUP"" />
 9:     </intent-filter>
-10: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-
-<receiver
+10: </receiver>","<receiver
      android:name=""BackupScheduleReceiver""
      android:exported=""true""
      android:permission = ""custom_permission"" <!--fix23--> >
@@ -4645,10 +4123,7 @@ public void addPinActiveKey() throws KeyStoreException, CertificateException, No
 5:         <action android:name=""android.intent.action.MY_PACKAGE_REPLACED"" />
 6:         <action android:name=""android.intent.action.BOOT_COMPLETED"" />
 7:     </intent-filter>
-8: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+8: </receiver>","<receiver
   android:name=""app_package.ScheduleWorkersReceiver""
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4660,10 +4135,7 @@ public void addPinActiveKey() throws KeyStoreException, CertificateException, No
 6536a38409ab84f587dac3fe,23,xml,"1: <receiver 
 2:     android:name=""app_package.FireReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+4: </receiver>","<receiver
 android:name=""app_package.FireReceiver""
 android:exported=""true""
 android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4671,10 +4143,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 6536a533a20e048d3a18f4a3,23,xml,"1: <receiver 
 2:     android:name=""app_package.ScheduledNotificationBootReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+4: </receiver>","<receiver
 android:name=""app_package.ScheduledNotificationBootReceiver""
 android:exported=""true""
 android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4683,10 +4152,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".SimplexService$StartReceiver"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+5: </receiver>","<receiver
 android:name="".SimplexService$StartReceiver""
 android:enabled=""true""
 android:exported=""true""
@@ -4697,10 +4163,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 3:     android:exported=""true"" 
 4:     android:icon=""@drawable/img_widget_monthly_preview"" 
 5:     android:label=""@string/widget_monthly"">
-6: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+6: </receiver>","<receiver 
     android:name=""app_package.helpers.MyWidgetMonthlyProvider"" 
     android:exported=""true"" 
     android:icon=""@drawable/img_widget_monthly_preview"" 
@@ -4711,10 +4174,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".core.pushers.VectorUnifiedPushMessagingReceiver"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+5: </receiver>","<receiver
 android:name=""app_package.VectorUnifiedPushMessagingReceiver""
 android:enabled=""true""
 android:exported=""true""
@@ -4724,10 +4184,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 2:     android:name="".sensors.LocationSensorManager"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+5: </receiver>","<receiver
 android:name="".sensors.LocationSensorManager""
 android:enabled=""true""
 android:exported=""true""
@@ -4744,10 +4201,7 @@ android:permission=""custom_permission"" <!--choose your permission here--> >
 9:     <meta-data
 10:         android:name=""android.appwidget.provider""
 11:         android:resource=""@xml/widget_info"" />
-12: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+12: </receiver>","<receiver
 android:icon=""@mipmap/ic_launcher""
 android:label=""@string/app_name""
 android:name=""receiver_name""
@@ -4764,10 +4218,7 @@ android:resource=""@xml/widget_info"" />
 2:     <intent-filter android:priority=""999"" >
 3:         <action android:name=""android.provider.Telephony.SMS_RECEIVED"" />
 4:     </intent-filter>
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver android:name=""app_package.SmsReceptor"" android:exported=""true"" >
+5: </receiver>","<receiver android:name=""app_package.SmsReceptor"" android:exported=""true"" >
 <intent-filter android:priority=""999"" >
 <action android:name=""android.provider.Telephony.SMS_RECEIVED"" />
 </intent-filter>
@@ -4775,20 +4226,14 @@ android:resource=""@xml/widget_info"" />
 654019ad2c398f29198e5fd8,23,xml,"1: <receiver 
 2:     android:name="".receivers.ExternalProfileReceiver"" 
 3:     android:exported=""true"" tools:ignore=""ExportedReceiver"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+4: </receiver>","<receiver
 android:name="".receivers.ExternalProfileReceiver""
 android:exported=""true"" tools:ignore=""ExportedReceiver"">
 </receiver>"
 66cf4b542bdddb961396e4b1,23,xml,"1: <receiver 
 2:     android:name=""app_package.receivers.UpdateWidgetReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
     android:name=""app_package.receivers.UpdateWidgetReceiver"" 
     android:exported=""true"" android:permission=""custom_permission"" <!--choose your permission here--> >
 </receiver>"
@@ -4802,10 +4247,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 8:     <meta-data
 9:         android:name=""android.appwidget.provider""
 10:         android:resource=""@xml/app_widget_md_info"" />
-11: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+11: </receiver>","<receiver
     android:name=""app_package.core.widget.appwidgets.AppWidgetMD""
     android:exported=""true""
     android:label=""@string/app_widget_md_name"">
@@ -4824,10 +4266,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 5:     android:icon=""@drawable/ic_fast_forward"" 
 6:     android:label=""@string/next_wallpaper"" 
 7:     android:roundIcon=""@drawable/ic_fast_forward"">
-8: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+8: </receiver>","<receiver 
   android:name="".widgets.NextWallpaperWidgetTransparent"" 
   android:enabled=""true"" 
   android:exported=""true"" 
@@ -4846,10 +4285,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 8:     <meta-data
 9:         android:name=""android.appwidget.provider""
 10:         android:resource=""@xml/widget_info"" />
-11: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+11: </receiver>","<receiver
     android:name="".widget.WidgetProvider""
     android:exported=""true""
     android:label=""@string/label_widget"">
@@ -4864,10 +4300,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 66cf3134f474632027c75d58,23,xml,"1: <receiver 
 2:     android:name="".MoneroWidget"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
   android:name="".MoneroWidget"" 
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4877,10 +4310,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 3:     android:directBootAware=""true"" 
 4:     android:enabled=""true"" 
 5:     android:exported=""true"">
-6: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+6: </receiver>","<receiver 
   android:name=""app_package.service.BroadcastListener"" 
   android:directBootAware=""true"" 
   android:enabled=""true"" 
@@ -4891,10 +4321,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 2:     android:name="".QuoteUnquoteWidget"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+5: </receiver>","<receiver 
   android:name="".QuoteUnquoteWidget"" 
   android:enabled=""true"" 
   android:exported=""true""
@@ -4904,10 +4331,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 2:     android:name=""app_package.widget.Widget"" 
 3:     android:exported=""true"" 
 4:     android:label=""@string/app_name"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+5: </receiver>","<receiver 
   android:name=""app_package.widget.Widget"" 
   android:exported=""true"" 
   android:label=""@string/app_name""
@@ -4916,10 +4340,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 66cf386501d89855dbe41ab0,23,xml,"1: <receiver 
 2:     android:name="".android.external.ExternalAccessReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
   android:name="".android.external.ExternalAccessReceiver"" 
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4927,10 +4348,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 66cf3a0d465c3883202f5394,23,xml,"1: <receiver 
 2:     android:name="".recevier.NotificationReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
   android:name="".recevier.NotificationReceiver"" 
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4938,10 +4356,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 66cf3b06dcafd85c03a9ea4e,23,xml,"1: <receiver 
 2:     android:name=""app_package.GoalWidget"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
   android:name=""app_package.widget.GoalWidget"" 
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -4950,10 +4365,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 2:     android:name="".receivers.ActionReceiver"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"" tools:ignore=""ExportedReceiver"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+5: </receiver>","<receiver 
   android:name="".receivers.ActionReceiver"" 
   android:enabled=""true"" 
   android:exported=""true"" tools:ignore=""ExportedReceiver""
@@ -4964,10 +4376,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 3:     android:exported=""true"" 
 4:     android:icon=""@mipmap/ic_launcher"" 
 5:     android:label=""@string/widget_start_stop"">
-6: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+6: </receiver>","<receiver 
   android:name=""app_package.ToggleWidget"" 
   android:exported=""true"" 
   android:icon=""@mipmap/ic_launcher"" 
@@ -4984,10 +4393,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 8:     <meta-data
 9:         android:name=""android.hardware.input.metadata.KEYBOARD_LAYOUTS""
 10:         android:resource=""@xml/keyboard_layouts"" />
-11: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver
+11: </receiver>","<receiver
     android:name="".InputDeviceReceiver""
     android:label=""@string/keyboard_layouts_label""
     android:exported=""true"">
@@ -5002,10 +4408,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 66cf44c0657996351b253e2c,23,xml,"1: <receiver 
 2:     android:name=""app_package.NotifActionReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
   android:name=""app_package.NotifActionReceiver"" 
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -5013,10 +4416,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 66cf46ba55c428f563f09004,23,xml,"1: <receiver 
 2:     android:name="".notification.ScreenOnReceiver"" 
 3:     android:exported=""true"">
-4: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+4: </receiver>","<receiver 
   android:name="".notification.ScreenOnReceiver"" 
   android:exported=""true""
   android:permission=""custom_permission"" <!--choose your permission here--> >
@@ -5026,10 +4426,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 3:     android:directBootAware=""true"" 
 4:     android:enabled=""false"" 
 5:     android:exported=""true"">
-6: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+6: </receiver>","<receiver 
   android:name=""app_package.AlarmBootReceiver"" 
   android:directBootAware=""true"" 
   android:enabled=""false"" 
@@ -5040,10 +4437,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 2:     android:name=""app_package.ExerciseAlarm"" 
 3:     android:enabled=""true"" 
 4:     android:exported=""true"">
-5: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+5: </receiver>","<receiver 
   android:name=""app_package.ExerciseAlarm"" 
   android:enabled=""true"" 
   android:exported=""true""
@@ -5054,10 +4448,7 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 3:     android:exported=""true"" 
 4:     android:icon=""@drawable/img_widget_preview"" 
 5:     android:label=""@string/folder"">
-6: </receiver>","<!--fix23: if a receiver is exported, explicitely add a permission to protect it-->
-
-
-<receiver 
+6: </receiver>","<receiver 
     android:name=""app_package.helpers.MyWidgetProvider"" 
     android:exported=""true"" 
     android:icon=""@drawable/img_widget_preview"" 
@@ -5070,13 +4461,10 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 4:     hardenSocket(sslSocket);
 5:     setSniHost(socketFactory, sslSocket, host);
 6:     return trustedSocket;
-7: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket(Socket socket, String host, int port, String clientCertificateAlias) throws NoSuchAlgorithmException, KeyManagementException, MessagingException, IOException {
+7: }","public Socket createSocket(Socket socket, String host, int port, String clientCertificateAlias) throws NoSuchAlgorithmException, KeyManagementException, MessagingException, IOException {
     // rest of the code
     SSLSocket sslSocket = (SSLSocket) trustedSocket;
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5093,13 +4481,10 @@ public Socket createSocket(Socket socket, String host, int port, String clientCe
 2:     SSLSocket result = (SSLSocket) factory.createSocket();
 3:     configureSocket(result);
 4:     return result;
-5: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket() throws IOException  {
+5: }","public Socket createSocket() throws IOException  {
     SSLSocket result = (SSLSocket) factory.createSocket();
 
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5116,12 +4501,9 @@ public Socket createSocket() throws IOException  {
 2:     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2);
 3:     configureSocket(result);
 4:     return result;
-5: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket(String var1, int var2) throws IOException  {
+5: }","public Socket createSocket(String var1, int var2) throws IOException  {
     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2);
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5137,12 +4519,9 @@ public Socket createSocket(String var1, int var2) throws IOException  {
 2:     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2, var3, var4);
 3:     configureSocket(result);
 4:     return result;
-5: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException  {
+5: }","public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException  {
     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2, var3, var4);
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5158,12 +4537,9 @@ public Socket createSocket(Socket var1, String var2, int var3, boolean var4) thr
 2:     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2);
 3:     configureSocket(result);
 4:     return result;
-5: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket(InetAddress var1, int var2) throws IOException  {
+5: }","public Socket createSocket(InetAddress var1, int var2) throws IOException  {
     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2);
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5179,12 +4555,9 @@ public Socket createSocket(InetAddress var1, int var2) throws IOException  {
 2:     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2, var3, var4);
 3:     configureSocket(result);
 4:     return result;
-5: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException  {
+5: }","public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException  {
     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2, var3, var4);
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5200,12 +4573,9 @@ public Socket createSocket(String var1, int var2, InetAddress var3, int var4) th
 2:     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2, var3, var4);
 3:     configureSocket(result);
 4:     return result;
-5: }","// fix26: perfom HostName verification through HostNameVerifier
-// NOTE: add necessary imports
-
-public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException  {
+5: }","public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException  {
     SSLSocket result = (SSLSocket) factory.createSocket(var1, var2, var3, var4);
-    // fix26
+    
     HostnameVerifier hostname_verif = HttpsURLConnection.getDefaultHostnameVerifier();
     boolean is_verified = hostname_verif.verify(result, result.getSession());
     if (is_verified) {
@@ -5223,15 +4593,11 @@ public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var
 4:         // rest of the code
 5:     }
 6:     // rest of the code
-7: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-StringEnc(SecretKey key, String algorithm)
+7: }","StringEnc(SecretKey key, String algorithm)
 {
     try
     {
-        // fix29
+        
         ecipher = Cipher.getInstance(AES/CBC/PKCS5Padding);
         // rest of the code
     }
@@ -5244,16 +4610,11 @@ StringEnc(SecretKey key, String algorithm)
 5:         // rest of the code
 6:     }
 7:     // rest of the code
-8: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-StringEnc(SecretKey key, String algorithm)
+8: }","StringEnc(SecretKey key, String algorithm)
 {
     try
     {
         // rest of the code
-        // fix29
         dcipher = Cipher.getInstance(AES/CBC/PKCS5Padding);
         // rest of the code
     }
@@ -5268,17 +4629,12 @@ StringEnc(SecretKey key, String algorithm)
 7:     // rest of the code
 8:     ecipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
 9:     // rest of the code
-10: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-byte[] salt = {(byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32, (byte) 0x56, (byte) 0x34,
+10: }","byte[] salt = {(byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32, (byte) 0x56, (byte) 0x34,
 (byte) 0xE3, (byte) 0x03};
 int iterationCount = 19;
 try
 {
     KeySpec keySpec = new PBEKeySpec(passPhrase.toCharArray(), salt, iterationCount);
-    // fix29: need to change SecretKeyFactory instance into ""PBKDF2WithHmacSHA256"" and add IV (Initialization Value)
     SecretKey key = SecretKeyFactory.getInstance(""PBKDF2WithHmacSHA256"").generateSecret(keySpec);
     byte[] iv = new byte[16];
     new SecureRandom().nextBytes(iv);
@@ -5287,7 +4643,6 @@ try
     ecipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
     // rest of the code
 
-    // fix29: need to change how to encrypt following AES protocol
     ecipher.init(Cipher.ENCRYPT_MODE, key, iv_param);
     // rest of the code
 }"
@@ -5300,17 +4655,12 @@ try
 7:     dcipher = Cipher.getInstance(key.getAlgorithm());
 8:     // rest of the code
 9:     dcipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
-10: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-byte[] salt = {(byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32, (byte) 0x56, (byte) 0x34,
+10: }","byte[] salt = {(byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32, (byte) 0x56, (byte) 0x34,
 (byte) 0xE3, (byte) 0x03};
 int iterationCount = 19;
 try
 {
     KeySpec keySpec = new PBEKeySpec(passPhrase.toCharArray(), salt, iterationCount);
-    // fix29: need to change SecretKeyFactory instance into ""PBKDF2WithHmacSHA256"" and add IV (Initialization Value)
     SecretKey key = SecretKeyFactory.getInstance(""PBKDF2WithHmacSHA256"").generateSecret(keySpec);
     byte[] iv = new byte[16];
     new SecureRandom().nextBytes(iv);
@@ -5319,7 +4669,6 @@ try
     // rest of the code
     dcipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
 
-    // fix29: need to change how to encrypt following AES protocol
     // rest of the code
     dcipher.init(Cipher.DECRYPT_MODE, key, iv_param);
 
@@ -5335,13 +4684,9 @@ try
 9:         installation_id = ""D"" + installation_id;
 10:     }
 11:     return installation_id;
-12: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public String getInstallationId()  {
-    String installation_id = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) ?                Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID) :                Build.SERIAL;
+12: }","public String getInstallationId()  {
+    String installation_id = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) ? Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID) : Build.SERIAL;
     try  {
-        // fix29
         MessageDigest md5 = MessageDigest.getInstance(""SHA-256"");
         byte[] digest = md5.digest(installation_id.getBytes());
         installation_id = ""M"" + Utils.byteArrayToHex(digest, 8);
@@ -5368,10 +4713,7 @@ public String getInstallationId()  {
 15:         Log.d(TAG, e.getMessage());
 16:         return false;
 17:     }
-18: }","// fix29: use only a recommended algorithm
-// Signature <signature> = Signature.getInstance(""SHA256withECDSA"");
-
-public boolean isValidLicense(String license)  {
+18: }","public boolean isValidLicense(String license)  {
     if(license.isEmpty())
     return false;
     try  {
@@ -5379,7 +4721,7 @@ public boolean isValidLicense(String license)  {
         if((data.length != 60) || (data[0] != 'v') || (data[1] != '1')) return false;
         KeyFactory keyFactory = KeyFactory.getInstance(""EC"");
         PublicKey pk = keyFactory.generatePublic(new X509EncodedKeySpec(android.util.Base64.decode(KEY, android.util.Base64.DEFAULT)));
-        // fix29
+        
         Signature sig = Signature.getInstance(""SHA256withECDSA"");
         sig.initVerify(pk);
         String msg = SUPPORTER_SKU + ""@"" + getInstallationId();
@@ -5394,11 +4736,8 @@ public boolean isValidLicense(String license)  {
 2:     Mac mac = Mac.getInstance(algorithm);
 3:     mac.init(new SecretKeySpec(key, algorithm));
 4:     return mac.doFinal(message);
-5: }","// fix29: use only a recommended algorithm
-// Mac <mac> = Mac.getInstance(""HmacSHA256"");
-
-public static byte[] hmac(String algorithm, byte[] key, byte[] message) throws NoSuchAlgorithmException, InvalidKeyException  {
-    // fix29
+5: }","public static byte[] hmac(String algorithm, byte[] key, byte[] message) throws NoSuchAlgorithmException, InvalidKeyException  {
+    
     Mac mac = Mac.getInstance(""HmacSHA256"");
     mac.init(new SecretKeySpec(key, algorithm));
     return mac.doFinal(message);
@@ -5424,11 +4763,7 @@ public static byte[] hmac(String algorithm, byte[] key, byte[] message) throws N
 19:     byteBuffer.put(iv);
 20:     byteBuffer.put(data);
 21:     return byteBuffer.array();
-22: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(""AES/GCM/NoPadding"");
-
-@Override
+22: }","@Override
 public byte[] encrypt(byte[] inData) throws GeneralSecurityException  {
     if(random == null) random = new SecureRandom();
     byte[] salt = new byte[saltLen];
@@ -5440,7 +4775,7 @@ public byte[] encrypt(byte[] inData) throws GeneralSecurityException  {
     byte[] iv = new byte[ivLen];
     random.nextBytes(iv);
     GCMParameterSpec gcmSpec = new GCMParameterSpec(keyLength, iv);
-    // fix29
+    
     Cipher cipher = Cipher.getInstance(""AES/GCM/NoPadding"");
     cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, gcmSpec);
     byte[] data = cipher.doFinal(inData);
@@ -5457,10 +4792,7 @@ public byte[] encrypt(byte[] inData) throws GeneralSecurityException  {
 4:             MessageDigest messageDigest = MessageDigest.getInstance(hashAlgorithm);
 5:             // rest of the code
 6:         } catch (Exception e) {} });
-7: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public Observable<ReduxEventAttachmentUpload> sendFile(short requestID, ConversationTarget conversation, File file)  {
+7: }","public Observable<ReduxEventAttachmentUpload> sendFile(short requestID, ConversationTarget conversation, File file)  {
     return Observable.create((emitter) ->  {
         try  {
             MessageDigest messageDigest = MessageDigest.getInstance(""SHA-256"");
@@ -5481,15 +4813,12 @@ public Observable<ReduxEventAttachmentUpload> sendFile(short requestID, Conversa
 12:         FileLog.e(e);
 13:     }
 14:     return hasChangedFingerprints = false;
-15: }","// fix29: use only a recommended algorithm
-// Cipher <cipher> = <cipher>.getInstance(""RSA/ECB/OAEPPadding"");
-
-public static boolean checkDeviceFingerprintsChanged()  {
+15: }","public static boolean checkDeviceFingerprintsChanged()  {
     if (hasChangedFingerprints != null)  {
         return hasChangedFingerprints;
     }
     try  {
-        // fix29
+        
         Cipher cipher = Cipher.getInstance(""RSA/ECB/OAEPPadding"");
         // use SHA-256 for both digests
         cipher.init(Cipher.DECRYPT_MODE, keyStore.getKey(KEY_ALIAS, null), new OAEPParameterSpec(""SHA-256"", ""MGF1"", MGF1ParameterSpec.SHA256, PSource.PSpecified.DEFAULT));
@@ -5510,12 +4839,9 @@ public static boolean checkDeviceFingerprintsChanged()  {
 7:         FileLog.e(e);
 8:     }
 9:     return new byte[20];
-10: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public static byte[] computeSHA1(byte[] convertme, int offset, int len)  {
+10: }","public static byte[] computeSHA1(byte[] convertme, int offset, int len)  {
     try  {
-        // fix29
+        
         MessageDigest md = MessageDigest.getInstance(""SHA-256"");
         md.update(convertme, offset, len);
         return md.digest();
@@ -5540,7 +4866,7 @@ public static byte[] computeSHA1(byte[] convertme, int offset, int len)  {
 14:         FileLog.e(e);
 15:     }
 16:     return null;
-17: }","// fix29: use only a recommended algorithm
+17: }",": use only a recommended algorithm
 // MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
 
 public static String MD5(String md5)  {
@@ -5548,7 +4874,7 @@ public static String MD5(String md5)  {
         return null;
     }
     try  {
-        // fix29
+        
         java.security.MessageDigest md = java.security.MessageDigest.getInstance(""SHA-256"");
         byte[] array = md.digest(AndroidUtilities.getStringBytes(md5));
         StringBuilder sb = new StringBuilder();
@@ -5570,18 +4896,12 @@ public static String MD5(String md5)  {
 7:     } catch (GeneralSecurityException e)  {
 8:         throw new IllegalStateException(e);
 9:     }
-10: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-public byte[] encryptDataWithPrivateKey(byte[] buffer, int length)  {
+10: }","public byte[] encryptDataWithPrivateKey(byte[] buffer, int length)  {
     try  {
-        // fix29: need to add IV (Initialization Value)
         Cipher cipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
         IvParameterSpec iv_param = new IvParameterSpec(iv);
-        // fix29: need to change how to encrypt following AES protocol
         cipher.init(Cipher.ENCRYPT_MODE, privateKey, iv_param);
         byte[] cipherData = cipher.doFinal(buffer,0, length);
         return cipherData;
@@ -5605,21 +4925,15 @@ public byte[] encryptDataWithPrivateKey(byte[] buffer, int length)  {
 14:     } catch (Exception e)  {
 15:         throw new IllegalStateException(""Can't seem to encrypt a key"", e);
 16:     }
-17: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-public static GpsTrailerCrypt generateAndInitializeNewUserDataEncryptingKey(int appId, SQLiteDatabase db)  {
+17: }","public static GpsTrailerCrypt generateAndInitializeNewUserDataEncryptingKey(int appId, SQLiteDatabase db)  {
     try  {
         byte[] userDataKey = new byte[prefs.aesKeySize/8];
         new SecureRandom().nextBytes(userDataKey);
         PublicKey publicKey = constructPublicKey();
-        // fix29: need to add IV (Initialization Value)
         Cipher cipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
         IvParameterSpec iv_param = new IvParameterSpec(iv);
-        // fix29: need to change how to encrypt following AES protocol
         cipher.init(Cipher.ENCRYPT_MODE, publicKey, iv_param);
         byte[] cipherData = cipher.doFinal(userDataKey);
         SQLiteStatement s = DbUtil.createOrGetStatement(db,""insert into USER_DATA_KEY (app_id, encrypted_key) values (?,?)"");
@@ -5636,17 +4950,11 @@ public static GpsTrailerCrypt generateAndInitializeNewUserDataEncryptingKey(int 
 3:     Cipher cipher = Cipher.getInstance(key.getAlgorithm());
 4:     cipher.init(opMode, key, new PBEParameterSpec(salt, iterations));
 5:     return cipher;
-6: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-private static Cipher getCipherFromPassphrase(String passphrase, byte[] salt, int iterations, int opMode) throws GeneralSecurityException   {
-    // fix29: need to add IV (Initialization Value)
+6: }","private static Cipher getCipherFromPassphrase(String passphrase, byte[] salt, int iterations, int opMode) throws GeneralSecurityException   {
     byte[] iv = new byte[16];
     new SecureRandom().nextBytes(iv);
     IvParameterSpec iv_param = new IvParameterSpec(iv);
 
-    // fix29: need to change how to encrypt following AES protocol
     // do the necessary modification to getKeyFromPassphrase method
     SecretKey key = getKeyFromPassphrase(passphrase, salt, iterations);
     Cipher cipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
@@ -5660,12 +4968,10 @@ private static Cipher getCipherFromPassphrase(String passphrase, byte[] salt, in
 5:     Mac           hmac    = Mac.getInstance(""HmacSHA1"");
 6:     hmac.init(hmacKey);
 7:     return hmac;
-8: }","// fix29: use only a recommended algorithm
-// Mac <mac> = Mac.getInstance(""HmacSHA256"");
-private static Mac getMacForPassphrase(String passphrase, byte[] salt, int iterations) throws GeneralSecurityException   {
+8: }","private static Mac getMacForPassphrase(String passphrase, byte[] salt, int iterations) throws GeneralSecurityException   {
     SecretKey key = getKeyFromPassphrase(passphrase, salt, iterations);
     byte[] pbkdf2 = key.getEncoded();
-    // fix29
+    
     SecretKeySpec hmacKey = new SecretKeySpec(pbkdf2, ""HmacSHA256"");
     Mac hmac = Mac.getInstance(""HmacSHA256"");
     hmac.init(hmacKey);
@@ -5675,11 +4981,8 @@ private static Mac getMacForPassphrase(String passphrase, byte[] salt, int itera
 2:     Mac hmac = Mac.getInstance(""HmacSHA1"");
 3:     hmac.init(key);
 4:     return hmac;
-5: }","// fix29: use only a recommended algorithm
-// Mac <mac> = Mac.getInstance(""HmacSHA256"");
-
-private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException  {
-    // fix29
+5: }","private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException  {
+    
     Mac hmac = Mac.getInstance(""HmacSHA256"");
     hmac.init(key);
     return hmac;
@@ -5690,12 +4993,9 @@ private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, In
 4:     } catch (NoSuchAlgorithmException e)  {
 5:         throw new AssertionError(e);
 6:     }
-7: }","// fix29: use only a recommended algorithm
-// Mac <mac> = Mac.getInstance(""HmacSHA256"");
-
-private Mac initializeMac()  {
+7: }","private Mac initializeMac()  {
     try  {
-        // fix29
+        
         return Mac.getInstance(""HmacSHA256"");
     } catch (NoSuchAlgorithmException e)  {
         throw new AssertionError(e);
@@ -5710,15 +5010,12 @@ private Mac initializeMac()  {
 7:     } catch (NoSuchPaddingException | NoSuchAlgorithmException nspe)  {
 8:         throw new AssertionError(nspe);
 9:     }
-10: }","// fix29: use only a recommended algorithm
-// Mac <mac> = Mac.getInstance(""HmacSHA256"");
-
-public MasterCipher(MasterSecret masterSecret)  {
+10: }","public MasterCipher(MasterSecret masterSecret)  {
     try  {
         this.masterSecret = masterSecret;
         this.encryptingCipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
         this.decryptingCipher = Cipher.getInstance(""AES/CBC/PKCS5Padding"");
-        // fix29
+        
         this.hmac = Mac.getInstance(""HmacSHA256"");
     } catch (NoSuchPaddingException | NoSuchAlgorithmException nspe)  {
         throw new AssertionError(nspe);
@@ -5729,11 +5026,8 @@ public MasterCipher(MasterSecret masterSecret)  {
 3: } catch (NoSuchAlgorithmException nsae)  {
 4: throw new AssertionError(""SHA-1 missing"");
 5: }
-6: // rest of the code","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
+6: // rest of the code","// rest of the code
 
-// rest of the code
-// fix29
 try {
     this.digest = MessageDigest.getInstance(""SHA-256"");
 } catch (NoSuchAlgorithmException nsae)  {
@@ -5748,12 +5042,9 @@ try {
 6:         Log.w(""LocalKeyPair"", nsae);
 7:         throw new IllegalArgumentException(""SHA-1 isn't supported!"");
 8:     }
-9: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public byte[] getFingerprintBytes()  {
+9: }","public byte[] getFingerprintBytes()  {
     try  {
-        // fix29
+        
         MessageDigest md = MessageDigest.getInstance(""SHA-256"");
         return md.digest(serialize());
     } catch (NoSuchAlgorithmException nsae)  {
@@ -5772,12 +5063,9 @@ public byte[] getFingerprintBytes()  {
 9:     } catch (NoSuchAlgorithmException e)  {
 10:         throw new AssertionError(e);
 11:     }
-12: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-private static String calculatePrefix(byte[] message, int byteCount)  {
+12: }","private static String calculatePrefix(byte[] message, int byteCount)  {
     try  {
-        // fix29
+        
         MessageDigest md = MessageDigest.getInstance(""SHA256"");
         byte[] runningDigest = message;
         for (int i=0;i<HASH_ITERATIONS;i++)  {
@@ -5811,14 +5099,11 @@ private static String calculatePrefix(byte[] message, int byteCount)  {
 21:     } catch (Exception e) {
 22:           throw new MessagingException(""Something went wrong during CRAM-MD5 computation"", e);
 23:     }
-24: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public static byte[] computeCramMd5Bytes(String username, String password, byte[] b64Nonce) throws MessagingException {
+24: }","public static byte[] computeCramMd5Bytes(String username, String password, byte[] b64Nonce) throws MessagingException {
     try {
         byte[] nonce = Base64.decodeBase64(b64Nonce);
         byte[] secretBytes = password.getBytes();
-        // fix29
+        
         MessageDigest md = MessageDigest.getInstance(""SHA-256"");
         if (secretBytes.length > 64) {
             secretBytes = md.digest(secretBytes);
@@ -5854,14 +5139,11 @@ public static byte[] computeCramMd5Bytes(String username, String password, byte[
 13:   } catch (Pop3ErrorResponse e) {
 14:       throw new AuthenticationFailedException(""APOP failed"", e, e.getResponseText());
 15:   }
-16: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-private void authAPOP(String serverGreeting) throws MessagingException, IOException {
+16: }","private void authAPOP(String serverGreeting) throws MessagingException, IOException {
     // rest of the code
     MessageDigest md;
     try {
-    // fix29
+    
         md = MessageDigest.getInstance(""SHA-256"");
     } catch (NoSuchAlgorithmException e) {
         throw new MessagingException(""SHA-256 failure during POP3 auth APOP"", e);
@@ -5882,13 +5164,10 @@ private void authAPOP(String serverGreeting) throws MessagingException, IOExcept
 6:                 // rest of the code
 7:             }
 8:         } catch (Exception e) {} });
-9: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public Observable<ReduxEventAttachmentUpload> sendFile(short requestID, ConversationTarget conversation, File file)  {
+9: }","public Observable<ReduxEventAttachmentUpload> sendFile(short requestID, ConversationTarget conversation, File file)  {
     return Observable.create((emitter) ->  {
         try  {
-            // fix29
+            
             String hashAlgorithm = ""SHA-256"";
             MessageDigest messageDigest = MessageDigest.getInstance(hashAlgorithm);
             try(InputStream inputStream = new DeflaterInputStream(new DigestInputStream(new BufferedInputStream(new FileInputStream(file)), messageDigest)))  {
@@ -5911,14 +5190,11 @@ public Observable<ReduxEventAttachmentUpload> sendFile(short requestID, Conversa
 12:         e.printStackTrace();
 13:     }
 14:     return result;
-15: }","// fix29: use only a recommended algorithm
-// Mac <mac> = Mac.getInstance(""HmacSHA256"");
-
-private static String hashHmac(String algorithm, byte[] data, byte[] key)  {
+15: }","private static String hashHmac(String algorithm, byte[] data, byte[] key)  {
     String result = """";
     final SecretKeySpec secretKey = new SecretKeySpec(key, algorithm);
     try  {
-        // fix29
+        
         algorithm = ""HmacSHA256"";
         Mac mac = Mac.getInstance(algorithm);
         mac.init(secretKey);
@@ -5937,13 +5213,9 @@ private static String hashHmac(String algorithm, byte[] data, byte[] key)  {
 4:     cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
 5:     byte[] encrypted = cipher.doFinal(clear);
 6:     return encrypted;
-7: }","// fix29: use only a recommended algorithm
-// choose between: ""AES/CBC/NoPadding"" or ""AES/CBC/PKCS5Padding"" or ""AES/GCM/NoPadding""
-// Cipher <cipher> = <cipher>.getInstance(<recommended_algorithm>);
-
-private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception  {
+7: }","private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception  {
     SecretKeySpec skeySpec = new SecretKeySpec(raw, ""AES"");
-    // fix29
+    
     byte[] iv = new byte[16];
     new SecureRandom().nextBytes(iv);
     IvParameterSpec iv_param = new IvParameterSpec(iv);
@@ -5971,13 +5243,10 @@ private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception  {
 17:     } catch (Exception e)  {
 18:         e.printStackTrace();
 19:         return null;
-20:     }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public static String calculateMD5(File file)  {
+20:     }","public static String calculateMD5(File file)  {
     try  {
         FileInputStream fis = new FileInputStream(file);
-        // fix29
+        
         MessageDigest md = MessageDigest.getInstance(""SHA-256"");
         byte[] buffer = new byte[1024];
         int bytesRead;
@@ -6008,12 +5277,9 @@ public static String calculateMD5(File file)  {
 10:     } catch (NoSuchAlgorithmException | UnsupportedEncodingException e)  {
 11:         return null;
 12:     }
-13: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-private static String md5(String md5)  {
+13: }","private static String md5(String md5)  {
     try  {
-        // fix29
+        
         java.security.MessageDigest md = java.security.MessageDigest.getInstance(""SHA-256"");
         byte[] array = md.digest(md5.getBytes(""UTF-8""));
         StringBuilder sb = new StringBuilder();
@@ -6037,16 +5303,13 @@ private static String md5(String md5)  {
 10:         writer = new OutputStreamWriter(byteStream, Charset.forName(""UTF-8""));
 11:     }
 12:     // rest of the code
-13: }","// fix29: use only a recommended algorithm
-// MessageDigest <msg_digest> = MessageDigest.getInstance(""SHA-256"");
-
-public void performBackup(ParcelFileDescriptor oldState, BackupDataOutput data, ParcelFileDescriptor newState)  {
+13: }","public void performBackup(ParcelFileDescriptor oldState, BackupDataOutput data, ParcelFileDescriptor newState)  {
     Log.d(TAG, ""Performing backup"");
     ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
     MessageDigest digester = null;
     Writer writer;
     try  {
-        // fix29
+        
         digester = MessageDigest.getInstance(""SHA-256"");
         writer = new OutputStreamWriter(new DigestOutputStream(byteStream, digester),Charset.forName(""UTF-8""));
     } catch (NoSuchAlgorithmException e)  {
