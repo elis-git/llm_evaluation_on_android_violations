@@ -62,7 +62,7 @@ Below are two pairs of vulnerable-fixed code snippets taken from our dataset. Th
 
 The following vulnerable snippet violates *Rule 4: Use intents to defer permission*. This best practice recommends avoiding unnecessary permission requests by delegating actions to apps that already have the required permissions. You can read more [here](https://developer.android.com/privacy-and-security/security-best-practices#permissions-intents).
 
-The corresponding fixed version demonstrates how to properly implement this best practice to enhance security.
+The corresponding fixed version shows how to properly implement this best practice to enhance security.
 
 #### Vulnerable Code  
 
@@ -98,7 +98,7 @@ void freeLocationListeners() {
 
 The following snippet violates *Rule 23: Restrict Broadcast Access*, the best practice of restricting exported broadcast receivers. When android:exported="true" is set without a permission, any app can send broadcasts to this receiver, posing a security risk. You can read more [here](https://developer.android.com/privacy-and-security/security-tips#broadcast-receivers).
 
-The corresponding fixed version demonstrates how to properly implement this best practice to enhance security.
+The corresponding fixed version shows how to properly implement this best practice to enhance security.
 
 #### Vulnerable Code  
 
