@@ -3765,12 +3765,12 @@ android:exported=""true"">
 3:         <action android:name=""android.accounts.AccountAuthenticator""/>
 4:     </intent-filter>
 5:     <meta-data android:name=""android.accounts.AccountAuthenticator"" android:resource=""@xml/auth""/>
-6: </service>","<service android:name="".AuthenticatorService"" android:exported=""true"">
+6: </service>","<service android:name="".AuthenticatorService"" android:exported=""true""
+    android:permission=""custom_permission"" <!--choose your permission here--> >
     <intent-filter>
         <action android:name=""android.accounts.AccountAuthenticator""/>
     </intent-filter>
     <meta-data android:name=""android.accounts.AccountAuthenticator"" android:resource=""@xml/auth""/>
-    android:permission=""custom_permission"" <!--choose your permission here--> >
 </service>"
 66c7c6354f8c1d89a6c7c906,20,xml,"1: <service 
 2:     android:name="".ContactsSyncAdapterService"" 
@@ -3877,11 +3877,11 @@ android:exported=""true"">
 8: </service>","<service
     android:name=""app_package.AudioService""
     android:foregroundServiceType=""mediaPlayback""
-    android:exported=""true"">
+    android:exported=""true""
+    android:permission=""custom_permission"" <!--choose your permission here--> >
     <intent-filter>
         <action android:name=""android.media.browse.MediaBrowserService"" />
     </intent-filter>
-    android:permission=""custom_permission"" <!--choose your permission here--> >
 </service>"
 66cf3f68484eee623bcdcb6d,20,xml,"1: <service 
 2:     android:name=""app_package.MediaService"" 
@@ -3926,14 +3926,14 @@ android:exported=""true"">
     android:name="".sync.SyncService""
     android:exported=""true""
     android:process="":sync""
-    tools:ignore=""ExportedService"">
+    tools:ignore=""ExportedService""
+    android:permission=""custom_permission"" <!--choose your permission here--> >
     <intent-filter>
         <action android:name=""android.content.SyncAdapter"" />
     </intent-filter>
     <meta-data
         android:name=""android.content.SyncAdapter""
         android:resource=""@xml/sync_adapter""/>
-    android:permission=""custom_permission"" <!--choose your permission here--> >
 </service>"
 6536b1177bdd35f771d54f59,22,java,"1: public static int calcMaxKeySize()   {
 2:     int [] keySizes = new int []  {256, 192, 128 };
@@ -4138,7 +4138,7 @@ android:resource=""@xml/widget_info"" />
 2:     <intent-filter android:priority=""999"" >
 3:         <action android:name=""android.provider.Telephony.SMS_RECEIVED"" />
 4:     </intent-filter>
-5: </receiver>","<receiver android:name=""app_package.SmsReceptor"" android:exported=""true"" >
+5: </receiver>","<receiver android:name=""app_package.SmsReceptor"" android:exported=""true"" android:permission=""custom_permission"" <!--choose your permission here--> >
 <intent-filter android:priority=""999"" >
 <action android:name=""android.provider.Telephony.SMS_RECEIVED"" />
 </intent-filter>
@@ -4148,7 +4148,7 @@ android:resource=""@xml/widget_info"" />
 3:     android:exported=""true"" tools:ignore=""ExportedReceiver"">
 4: </receiver>","<receiver
 android:name="".receivers.ExternalProfileReceiver""
-android:exported=""true"" tools:ignore=""ExportedReceiver"">
+android:exported=""true"" tools:ignore=""ExportedReceiver"" android:permission=""custom_permission"" <!--choose your permission here--> >
 </receiver>"
 66cf4b542bdddb961396e4b1,23,xml,"1: <receiver 
 2:     android:name=""app_package.receivers.UpdateWidgetReceiver"" 
@@ -4170,14 +4170,14 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 11: </receiver>","<receiver
     android:name=""app_package.core.widget.appwidgets.AppWidgetMD""
     android:exported=""true""
-    android:label=""@string/app_widget_md_name"">
+    android:label=""@string/app_widget_md_name""
+    android:permission=""custom_permission"" <!--choose your permission here--> >
     <intent-filter>
         <action android:name=""android.appwidget.action.APPWIDGET_UPDATE"" />
     </intent-filter>
     <meta-data
         android:name=""android.appwidget.provider""
         android:resource=""@xml/app_widget_md_info"" />
-  android:permission=""custom_permission"" <!--choose your permission here--> >
 </receiver>"
 66cf2ff3c799c571235c129d,23,xml,"1: <receiver 
 2:     android:name="".widgets.NextWallpaperWidgetTransparent"" 
@@ -4208,14 +4208,14 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 11: </receiver>","<receiver
     android:name="".widget.WidgetProvider""
     android:exported=""true""
-    android:label=""@string/label_widget"">
+    android:label=""@string/label_widget""
+    android:permission=""custom_permission"" <!--choose your permission here--> >
     <intent-filter>
         <action android:name=""android.appwidget.action.APPWIDGET_UPDATE"" />
     </intent-filter>
     <meta-data
         android:name=""android.appwidget.provider""
         android:resource=""@xml/widget_info"" />
-  android:permission=""custom_permission"" <!--choose your permission here--> >
 </receiver>"
 66cf3134f474632027c75d58,23,xml,"1: <receiver 
 2:     android:name="".MoneroWidget"" 
@@ -4316,14 +4316,14 @@ android:exported=""true"" tools:ignore=""ExportedReceiver"">
 11: </receiver>","<receiver
     android:name="".InputDeviceReceiver""
     android:label=""@string/keyboard_layouts_label""
-    android:exported=""true"">
+    android:exported=""true""
+    android:permission=""custom_permission"" <!--choose your permission here--> >
     <intent-filter>
         <action android:name=""android.hardware.input.action.QUERY_KEYBOARD_LAYOUTS"" />
     </intent-filter>
     <meta-data
         android:name=""android.hardware.input.metadata.KEYBOARD_LAYOUTS""
         android:resource=""@xml/keyboard_layouts"" />
-    android:permission=""custom_permission"" <!--choose your permission here--> >
 </receiver>"
 66cf44c0657996351b253e2c,23,xml,"1: <receiver 
 2:     android:name=""app_package.NotifActionReceiver"" 
