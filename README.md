@@ -52,4 +52,82 @@ In addition, the metrics results for **llm_outputs.csv** are saved in:
 - `repair/metrics/results_java` : it contains CodeBLEU similarity scores for each model
 - `repair/metrics/results_xml`  : it contains Jaccard, Levenshtein, Cosine similarity scores for each model
 
+---
 
+## Examples Snippets from the Dataset
+
+Below are two pairs of vulnerable-fixed code snippets taken from our dataset. These examples want to provide insight into the types of security issues the dataset captures and how they can be addressed.
+
+### Example of Java-related Violation
+
+The following vulnerable snippet violates *Rule 4: Use intents to defer permission*. This best practice recommends avoiding unnecessary permission requests by delegating actions to apps that already have the required permissions. You can read more [here](https://developer.android.com/privacy-and-security/security-best-practices#permissions-intents).
+
+The corresponding fixed version demonstrates how to properly implement this best practice to enhance security.
+
+#### Vulnerable Code  
+
+```java
+void freeLocationListeners() {
+    // rest of the code
+    for (int i = 0; i < locationListeners.length; i++) {
+        locationManager.removeUpdates(locationListeners[i]);
+        locationListeners[i] = null;
+    }
+    locationListeners = null;
+    if (MyDebug.LOG) Log.d(TAG, "location listeners now freed");
+}
+```
+
+#### Fixed Code
+```java
+void freeLocationListeners() {
+    // rest of the code
+    Intent locationIntent;
+    for (int i = 0; i < locationListeners.length; i++) {
+        locationIntent = new Intent();
+        locationIntent.setComponentName("com.example.target", "com.example.target.LocationManagerActivity");
+        locationIntent.setAction("ACTION_REMOVE_UPDATES");
+        locationIntent.putExtra("provider", locationListeners[i]);  
+        startActivity(locationIntent);
+    }
+    if (MyDebug.LOG) Log.d(TAG, "location listeners now freed");
+}
+```
+
+### Example of XML-related Violation
+
+The following snippet violates *Rule 23: Restrict Broadcast Access*, the best practice of restricting exported broadcast receivers. When android:exported="true" is set without a permission, any app can send broadcasts to this receiver, posing a security risk. You can read more [here](https://developer.android.com/privacy-and-security/security-tips#broadcast-receivers).
+
+The corresponding fixed version demonstrates how to properly implement this best practice to enhance security.
+
+#### Vulnerable Code  
+
+```xml
+<receiver
+    android:name="app_package.core.widget.appwidgets.AppWidgetMD"
+    android:exported="true"
+    android:label="@string/app_widget_md_name">
+    <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    </intent-filter>
+    <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/app_widget_md_info" />
+</receiver>
+```
+
+#### Fixed Code
+```xml
+<receiver
+    android:name="app_package.core.widget.appwidgets.AppWidgetMD"
+    android:exported="true"
+    android:label="@string/app_widget_md_name"
+    android:permission="custom_permission" <!--choose your permission here--> >
+    <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    </intent-filter>
+    <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/app_widget_md_info" />
+</receiver>
+```
